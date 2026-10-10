@@ -1,0 +1,6 @@
+# Dependencies & scratch files
+node_modules/
+.system_generated/
+extracted_preview/
+__pycache__/
+*.log

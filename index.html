@@ -1,0 +1,1882 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MATH 2211: Numerical Methods & Analysis — ৫ ঘণ্টার এক্সাম ক্র্যাশ কোর্স (Taught Topics Only)</title>
+  <meta name="description" content="CSE 2nd Year 2nd Semester Numerical Methods and Analysis সেমিস্টার ফাইনাল পরীক্ষার জন্য ক্লাসে পড়ানো সকল বিষয়ের ওপর ৫ ঘণ্টার পূর্ণাঙ্গ দ্বিভাষিক (Bangla + English) ইন্টারেক্টিভ রিভিশন পোর্টাল।">
+
+  <!-- KaTeX CSS & JS for textbook-quality mathematical typography -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       TOP NAVIGATION BAR
+       ======================================================================== -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#" class="brand">
+        <div class="brand-icon">
+          <i class="fas fa-square-root-variable"></i>
+        </div>
+        <div class="brand-text">
+          <h1>MATH 2211 : Numerical Analysis</h1>
+          <span class="en-body">Semester Final 5-Hour Masterclass (Class Taught Topics)</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#roadmap" class="nav-link"><i class="fas fa-clock"></i> স্টাডি রোডম্যাপ</a></li>
+        <li><a href="#modules" class="nav-link"><i class="fas fa-book-open"></i> টপিক ও নোটস</a></li>
+        <li><a href="#solvers" class="nav-link"><i class="fas fa-calculator"></i> লাইভ সলভার</a></li>
+        <li><a href="#calc-hacks" class="nav-link"><i class="fas fa-microchip"></i> ক্যালকুলেটর হ্যাকস</a></li>
+        <li><a href="#videos" class="nav-link"><i class="fab fa-youtube"></i> ভিডিও লেকচার</a></li>
+        <li><a href="#quiz" class="nav-link"><i class="fas fa-check-double"></i> মক টেস্ট</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="btn-timer-pill" id="nav-timer-pill" title="৫ ঘণ্টার স্টাডি টাইমার">
+          <span class="timer-indicator"></span>
+          <span id="nav-timer-text">05:00:00</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       HERO BANNER & QUICK EXAM DASHBOARD
+       ======================================================================== -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge-wrap">
+          <span class="badge badge-exam"><i class="fas fa-fire"></i> কালকে পরীক্ষা স্পেশাল</span>
+          <span class="badge badge-time"><i class="fas fa-stopwatch"></i> ৫ ঘণ্টার টার্গেট</span>
+          <span class="badge badge-syllabus"><i class="fas fa-graduation-cap"></i> 100% Taught Topics (No Secant, No Weddell)</span>
+        </div>
+
+        <h1 class="hero-title">
+          কালকের সেমিস্টার ফাইনালে <br>
+          <span class="highlight">সর্বোচ্চ মার্কস নিশ্চিত করুন</span> মাত্র ৫ ঘণ্টায়!
+        </h1>
+
+        <p class="hero-desc">
+          সিলেবাসের যেসব টপিক ক্লাসে পড়ানো হয়েছে (Secant Method ও Weddell's Rule বাদ দিয়ে) সেগুলোর প্রতিটি অঙ্ক, প্রতিপাদন এবং শর্টকাট ট্রিকস <strong>বাংলা ও ইংরেজি উভয় ভাষায় (Bilingual)</strong> পুঙ্খানুপুঙ্খভাবে সাজানো হয়েছে।
+        </p>
+
+        <div class="hero-stats-row">
+          <div class="stat-card">
+            <span class="stat-val">৫ ঘণ্টা</span>
+            <span class="stat-lbl">স্মার্ট রোডম্যাপ</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-val">৫টি</span>
+            <span class="stat-lbl">কোর অধ্যায়</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-val">৯৩ পৃষ্ঠা</span>
+            <span class="stat-lbl">ক্লাসনোট কভারেজ</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-val">১০০%</span>
+            <span class="stat-lbl">ক্যালকুলেটর ট্রিকস</span>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+          <a href="#modules" class="btn btn-primary"><i class="fas fa-rocket"></i> এখনই পড়া শুরু করুন</a>
+          <a href="#cheat-sheet" class="btn btn-secondary"><i class="fas fa-file-alt"></i> ১ পৃষ্ঠার ফর্মুলা শিট</a>
+          <a href="#solvers" class="btn btn-secondary"><i class="fas fa-laptop-code"></i> লাইভ সলভার টুলস</a>
+        </div>
+      </div>
+
+      <!-- Live 5-Hour Countdown Widget -->
+      <div class="timer-widget-card" id="timer-widget">
+        <div class="widget-header">
+          <div class="widget-title">
+            <i class="fas fa-hourglass-half" style="color:var(--accent-cyan);"></i>
+            <span>৫ ঘণ্টার কাউন্টডাউন টাইমার (5-Hr Timer)</span>
+          </div>
+          <span class="badge badge-time">লাইভ ট্র্যাকার</span>
+        </div>
+
+        <p style="font-size:0.85rem; color:var(--text-muted);">
+          পরীক্ষার আগের রাতে সময় নষ্ট না করে প্রতিটি ঘণ্টার টার্গেট অনুযায়ী পূর্ণ মনোযোগ বজায় রাখুন।
+        </p>
+
+        <div class="timer-display">
+          <span class="timer-digits" id="timer-digits">05:00:00</span>
+        </div>
+
+        <div class="timer-controls">
+          <button class="btn btn-primary" id="btn-timer-toggle">
+            <i class="fas fa-play"></i> স্টাডি শুরু করুন (Start Study)
+          </button>
+          <button class="btn btn-secondary btn-sm" id="btn-timer-reset">
+            <i class="fas fa-redo"></i> রিসেট
+          </button>
+          <button class="btn btn-secondary btn-sm" id="btn-timer-add30">
+            +৩০ মি.
+          </button>
+        </div>
+
+        <div class="progress-track-wrap">
+          <div class="progress-info">
+            <span>সিলেবাস সম্পন্ন অগ্রগতি:</span>
+            <span id="progress-bar-text" style="color:var(--accent-emerald); font-weight:700;">০% সম্পন্ন (০/১৫)</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-fill" id="progress-bar-fill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       5-HOUR ROADMAP STRIP
+       ======================================================================== -->
+  <section class="roadmap-section" id="roadmap">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">EXAM BATTLE PLAN • 5-HOUR TIMELINE</span>
+        <h2 class="section-title">৫ ঘণ্টার সুপার-ফোকাসড রিভিশন রুটিন</h2>
+        <p class="section-subtitle">কালকের পরীক্ষার প্রশ্নপত্রের ১০০% নির্ভুল উত্তরের জন্য এই ৫ ঘণ্টার রুটিনটি অনুসরণ করুন:</p>
+      </div>
+
+      <div class="roadmap-timeline">
+        <!-- Hour 1 -->
+        <div class="timeline-card active" data-target="mod-1">
+          <div class="timeline-hour">
+            <span>১ম ঘণ্টা (00:00 - 01:00)</span>
+            <span class="timeline-check"><i class="fas fa-check"></i></span>
+          </div>
+          <div class="timeline-title">Overview, Errors & Elimination Methods</div>
+          <div class="timeline-topics">
+            • Numerical Analysis ভূমিকা ও বাস্তব প্রয়োগ<br>
+            • Round-off, Truncation ও Absolute/Relative Error<br>
+            • Gauss Elimination (Forward + Back Substitution)<br>
+            • Gauss-Jordan Elimination ও তুলনামূলক ছক
+          </div>
+        </div>
+
+        <!-- Hour 2 -->
+        <div class="timeline-card" data-target="mod-2">
+          <div class="timeline-hour">
+            <span>২য় ঘণ্টা (01:00 - 02:00)</span>
+            <span class="timeline-check"><i class="fas fa-check"></i></span>
+          </div>
+          <div class="timeline-title">Solution of Equations (Root Finding)</div>
+          <div class="timeline-topics">
+            • Intermediate Value Theorem<br>
+            • Bisection Method (ক্লাসের $x^3-2x^2-4=0$ ম্যাথ)<br>
+            • Newton-Raphson Method (প্রতিপাদন + স্পর্শক চিত্র + $\sin x=10(x-1)$)<br>
+            • False Position Method ($x^7+\ln x-2=0$)<br>
+            • Casio ক্যালকুলেটর শর্টকাট হ্যাকস!
+          </div>
+        </div>
+
+        <!-- Hour 3 -->
+        <div class="timeline-card" data-target="mod-3">
+          <div class="timeline-hour">
+            <span>৩য় ঘণ্টা (02:00 - 03:00)</span>
+            <span class="timeline-check"><i class="fas fa-check"></i></span>
+          </div>
+          <div class="timeline-title">Finite Differences & Equal Intervals</div>
+          <div class="timeline-topics">
+            • Forward ($\Delta$), Backward ($\nabla$) ও Shift ($E$) অপারেটর<br>
+            • সসীম অন্তর সারণি ($f(x)=x^3-3x+1$)<br>
+            • Newton's Forward Interpolation (প্রতিপাদন + জনসংখ্যা ম্যাথ)<br>
+            • Newton's Backward Interpolation ($\tan(0.26)$ ম্যাথ)
+          </div>
+        </div>
+
+        <!-- Hour 4 -->
+        <div class="timeline-card" data-target="mod-4">
+          <div class="timeline-hour">
+            <span>৪র্থ ঘণ্টা (03:00 - 04:00)</span>
+            <span class="timeline-check"><i class="fas fa-check"></i></span>
+          </div>
+          <div class="timeline-title">Unequal Interval Interpolation</div>
+          <div class="timeline-topics">
+            • Divided Differences ধারণা ও সারণি<br>
+            • Newton General Divided Difference ($f(8)$ ও $f(15)$ ম্যাথ)<br>
+            • Lagrange's Interpolation Formula (নোটবুকের পূর্ণ প্রতিপাদন)<br>
+            • সম ও অসম ব্যবধির সূত্রের তুলনা
+          </div>
+        </div>
+
+        <!-- Hour 5 -->
+        <div class="timeline-card" data-target="mod-5">
+          <div class="timeline-hour">
+            <span>৫ম ঘণ্টা (04:00 - 05:00)</span>
+            <span class="timeline-check"><i class="fas fa-check"></i></span>
+          </div>
+          <div class="timeline-title">Numerical Integration</div>
+          <div class="timeline-topics">
+            • Trapezoidal Rule (যেকোনো $n$ এর জন্য)<br>
+            • Simpson's 1/3 Rule (শর্ত: $n$ জোড় হতে হবে)<br>
+            • Simpson's 3/8 Rule (শর্ত: $n$ ৩ এর গুণিতক হতে হবে)<br>
+            • ক্লাসের ২টি সলভড ম্যাথ ($\sqrt{x^2+2x+1}$ ও $\sqrt{\sin x+\cos x}$)
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       STICKY TABS FOR COMPLETE MODULE CONTENT
+       ======================================================================== -->
+  <nav class="modules-nav-wrap">
+    <div class="container">
+      <div class="tabs-scroll">
+        <button class="module-tab-btn active" data-target="mod-1">
+          <i class="fas fa-layer-group"></i> ১. ভূমিকা, ত্রুটি ও এলিমিনেশন
+        </button>
+        <button class="module-tab-btn" data-target="mod-2">
+          <i class="fas fa-crosshairs"></i> ২. মূল নির্ণয় (Root Finding)
+        </button>
+        <button class="module-tab-btn" data-target="mod-3">
+          <i class="fas fa-chart-line"></i> ৩. সসীম অন্তর ও নিউটন ইন্টারপোলেশন
+        </button>
+        <button class="module-tab-btn" data-target="mod-4">
+          <i class="fas fa-bezier-curve"></i> ৪. ডিভাইডেড ডিফারেন্স ও ল্যাগ্রাঞ্জ
+        </button>
+        <button class="module-tab-btn" data-target="mod-5">
+          <i class="fas fa-integral"></i> ৫. নিউমেরিক্যাল ইন্টিগ্রেশন
+        </button>
+        <button class="module-tab-btn" data-target="mod-solvers">
+          <i class="fas fa-code"></i> লাইভ সলভার টুলস
+        </button>
+        <button class="module-tab-btn" data-target="mod-calc">
+          <i class="fas fa-calculator"></i> ক্যালকুলেটর শর্টকাট হ্যাকস
+        </button>
+        <button class="module-tab-btn" data-target="mod-videos">
+          <i class="fab fa-youtube"></i> ভিডিও লেকচার
+        </button>
+        <button class="module-tab-btn" data-target="mod-cheat">
+          <i class="fas fa-star"></i> পরীক্ষার ফর্মুলা শিট
+        </button>
+        <button class="module-tab-btn" data-target="mod-quiz">
+          <i class="fas fa-tasks"></i> মক টেস্ট (১০ প্রশ্ন)
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========================================================================
+       MAIN CONTENT CONTAINER
+       ======================================================================== -->
+  <main class="container" id="modules">
+
+    <!-- ======================================================================
+         MODULE 1: OVERVIEW, ERRORS & ELIMINATION METHODS (HOUR 1)
+         ====================================================================== -->
+    <div class="module-content-pane active" id="mod-1">
+      <div class="module-banner">
+        <div class="banner-left">
+          <span class="banner-pill"><i class="fas fa-book"></i> Module 1 • Hour 1 (মডিউল ১ • ১ম ঘণ্টা)</span>
+          <h2 class="banner-title">Overview, Error Analysis & Elimination Methods</h2>
+          <p class="banner-desc">
+            নোটবুকের পেজ ১-১১ এবং ৪৫-৫১ কভার করে। এই অংশ থেকে ১টি পূর্ণ ব্রড প্রশ্ন (গাউস/গাউস-জর্ডান) এবং ত্রুটি সংক্রান্ত শর্ট নোট পরীক্ষায় নিশ্চিত আসে।
+          </p>
+        </div>
+        <div class="banner-right">
+          <span class="badge badge-exam">সম্ভাব্য মার্কস: ১০–১৫</span>
+        </div>
+      </div>
+
+      <div class="topics-stack">
+
+        <!-- Topic 1.1 -->
+        <article class="topic-card">
+          <div class="topic-header">
+            <div class="topic-meta">
+              <div class="topic-number">১.১</div>
+              <div class="topic-title-text">
+                <h3>Introduction to Numerical Analysis & Error Analysis</h3>
+                <span>নিউমেরিক্যাল অ্যানালাইসিস পরিচিতি, বাস্তব প্রয়োগ ও ত্রুটির প্রকারভেদ</span>
+              </div>
+            </div>
+            <div class="topic-actions">
+              <label class="btn btn-secondary btn-sm" style="cursor:pointer;">
+                <input type="checkbox" class="topic-check-input" data-topic-id="t1_1" style="margin-right:6px;"> সম্পন্ন হয়েছে (Done)
+              </label>
+            </div>
+          </div>
+
+          <div class="concept-box">
+            <div class="concept-title"><i class="fas fa-info-circle"></i> Definition (সংজ্ঞা — নোটবুক পেজ ১):</div>
+            <p>
+              <strong>Numerical Analysis:</strong> Numerical analysis is a branch of mathematics that focuses on designing and analyzing algorithms to obtain approximate numerical solutions to mathematical problems that may be difficult or impossible to solve analytically/exactly.
+            </p>
+            <p style="margin-top:6px; color:#cbd5e1;">
+              <strong>বাংলায় সহজ কথায়:</strong> বাস্তব জগতের অধিকাংশ গাণিতিক সমীকরণের কোনো সহজ বা নিখুঁত গাণিতিক সূত্র (analytical formula) থাকে না। অ্যালগরিদম ও পুনরাবৃত্তিমূলক হিসেবের মাধ্যমে নিখুঁত মানের খুব কাছাকাছি <em>আসন্ন মান (approximate value)</em> বের করার বিজ্ঞানই হলো নিউমেরিক্যাল অ্যানালাইসিস।
+            </p>
+          </div>
+
+          <div class="concept-box box-purple">
+            <div class="concept-title"><i class="fas fa-lightbulb"></i> Why Numerical Analysis Matters? (বাস্তব প্রয়োগ — নোটবুক পেজ ১):</div>
+            <p>Many real-world problems in science, engineering, and economics cannot be solved with exact formulas. Instead, we rely on numerical methods to compute accurate approximations. Examples from Sir's class notes:</p>
+            <ul style="margin: 0.75rem 0 0 1.5rem; line-height: 1.8;">
+              <li><strong>(i) Predicting Weather Patterns:</strong> বায়ুমণ্ডলের জটিল নন-লিনিয়ার Navier-Stokes সমীকরণ সমাধানে।</li>
+              <li><strong>(ii) Simulating Aircraft Aerodynamics:</strong> বিমানের ডানা ও রকেটের বাতাসের ঘর্ষণ সিমুলেট করতে।</li>
+              <li><strong>(iii) Solving Large System of Equations in Engineering:</strong> বৈদ্যুতিক সার্কিট, স্ট্রাকচারাল লোড ও গ্রিড নেটওয়ার্কের হাজার হাজার সমীকরণ সমাধানে।</li>
+              <li><strong>(iv) Modeling Financial Markets & Computer Science:</strong> মেশিন লার্নিং অপ্টিমাইজেশন, শেয়ার বাজারের ঝুঁকি বিশ্লেষণ ও গ্রাফিক্স রেন্ডারিং।</li>
+            </ul>
+          </div>
+
+          <div class="concept-box box-warning">
+            <div class="concept-title"><i class="fas fa-exclamation-triangle"></i> Error in Numerical Analysis (ত্রুটির প্রকারভেদ — পেজ ২):</div>
+            <div class="table-responsive">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>Type of Error (ত্রুটির ধরন)</th>
+                    <th>Cause & Description (উৎস ও কারণ)</th>
+                    <th>Example (উদাহরণ)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Round-off Error</strong><br>(কাটছাঁট ত্রুটি)</td>
+                    <td>কম্পিউটারের সসীম মেমোরির কারণে অসীম দশমিক সংখ্যাকে নির্দিষ্ট ঘরে সীমাবদ্ধ করার জন্য বাদ দেওয়া অংশ।</td>
+                    <td>$\frac{1}{3} = 0.333333...$ এর পরিবর্তে $0.3333$ ব্যবহার করলে $0.000033...$ ত্রুটি হয়।</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Truncation Error</strong><br>(ছেঁটে ফেলা ত্রুটি)</td>
+                    <td>কোনো অসীম গাণিতিক ধারা (Infinite Series) বা টেইলর সিরিজকে নির্দিষ্ট সংখ্যক পদের পর বাদ দিলে সৃষ্ট ত্রুটি।</td>
+                    <td>$e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + ...$ এর প্রথম ৩টি পদ নিলে অবশিষ্ট অংশ ট্রাঙ্কেশন এরর।</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Inherent / Data Error</strong><br>(উৎসগত ত্রুটি)</td>
+                    <td>পরীক্ষামূলক ডেটা সংগ্রহ বা পরিমাপ করার সময় যন্ত্রপাতির ত্রুটির কারণে ইনপুট ডেটায় যে ভুল থাকে।</td>
+                    <td>সেন্সরের তাপমাত্রার রিডিংয়ে $\pm 0.1^\circ\text{C}$ পার্থক্য।</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="math-display-wrap">
+              $$\text{Absolute Error (পরম ত্রুটি): } E_a = |X_{\text{true}} - X_{\text{approx}}|$$
+              $$\text{Relative Error (আপেক্ষিক ত্রুটি): } E_r = \frac{|X_{\text{true}} - X_{\text{approx}}|}{|X_{\text{true}}|}$$
+              $$\text{Percentage Error (শতকরা ত্রুটি): } E_p = E_r \times 100\%$$
+            </div>
+          </div>
+        </article>
+
+        <!-- Topic 1.2 -->
+        <article class="topic-card">
+          <div class="topic-header">
+            <div class="topic-meta">
+              <div class="topic-number">১.২</div>
+              <div class="topic-title-text">
+                <h3>Gauss Elimination Method</h3>
+                <span>গাউস অপনয়ন পদ্ধতি: ফরোয়ার্ড এলিমিনেশন, ব্যাক সাবস্টিটিউশন ও ক্লাসের অঙ্ক</span>
+              </div>
+            </div>
+            <div class="topic-actions">
+              <label class="btn btn-secondary btn-sm" style="cursor:pointer;">
+                <input type="checkbox" class="topic-check-input" data-topic-id="t1_2" style="margin-right:6px;"> সম্পন্ন হয়েছে (Done)
+              </label>
+            </div>
+          </div>
+
+          <div class="concept-box box-success">
+            <div class="concept-title"><i class="fas fa-check-circle"></i> Method Overview & Two Essential Steps:</div>
+            <p><strong>Why do we need Gauss Elimination?</strong> Answer (from notebook page 3): The Gauss Elimination Method is used to solve a system of linear equations with two or more unknown variables.</p>
+            <ol style="margin-left:1.5rem; line-height:1.8;">
+              <li><strong>Step 1 (Forward Elimination):</strong> অগমেন্টেড ম্যাট্রিক্স $[A \mid B]$ তৈরি করে সারি রূপান্তরের (Row Operations) মাধ্যমে প্রধান কর্ণের নিচের সমস্ত উপাদান ০ বানিয়ে ম্যাট্রিক্সটিকে <em>Upper Triangular Matrix</em> এ রূপান্তর করা হয়।</li>
+              <li><strong>Step 2 (Back Substitution):</strong> নিচের সারি থেকে সরাসরি $x_3$ এর মান পাওয়া যায়। তা ২য় সারিতে বসিয়ে $x_2$, এবং উভয়ের মান ১ম সারিতে বসিয়ে $x_1$ এর মান নির্ণয় করা হয়।</li>
+            </ol>
+          </div>
+
+          <!-- Solved Problem 1 (Notebook Page 3-5) -->
+          <div class="solved-problem-box">
+            <span class="problem-badge">Class Note Page 3-5 (Solved)</span>
+            <div class="problem-statement">
+              <strong>Problem-01:</strong> Solve by using Gauss Elimination Method of the following system:
+              $$2x_1 + x_2 + 4x_3 = 12$$
+              $$8x_1 - 3x_2 + 2x_3 = 20$$
+              $$4x_1 + 11x_2 - x_3 = 33$$
+            </div>
+
+            <div class="steps-container">
+              <div class="step-item">
+                <div class="step-indicator">১</div>
+                <div class="step-body">
+                  <div class="step-title">অগমেন্টেড ম্যাট্রিক্স $[A \mid B]$ গঠন (Forming Augmented Matrix):</div>
+                  <div class="math-display-wrap">
+                    $$\begin{bmatrix}
+                    2 & 1 & 4 & | & 12 \\
+                    8 & -3 & 2 & | & 20 \\
+                    4 & 11 & -1 & | & 33
+                    \end{bmatrix}$$
+                  </div>
+                </div>
+              </div>
+
+              <div class="step-item">
+                <div class="step-indicator">২</div>
+                <div class="step-body">
+                  <div class="step-title">Forward Elimination — ১ম কলাম পরিষ্কার করা:</div>
+                  <p class="step-desc">
+                    Pivot উপাদান $a_{11} = 2$।<br>
+                    সারি রূপান্তর: $R_2 \leftarrow R_2 - \left(\frac{8}{2}\right)R_1 = R_2 - 4R_1$<br>
+                    $R_3 \leftarrow R_3 - \left(\frac{4}{2}\right)R_1 = R_3 - 2R_1$:
+                  </p>
+                  <div class="math-display-wrap">
+                    $$\begin{bmatrix}
+                    2 & 1 & 4 & | & 12 \\
+                    0 & -7 & -14 & | & -28 \\
+                    0 & 9 & -9 & | & 9
+                    \end{bmatrix}$$
+                  </div>
+                </div>
+              </div>
+
+              <div class="step-item">
+                <div class="step-indicator">৩</div>
+                <div class="step-body">
+                  <div class="step-title">Forward Elimination — ২য় কলাম পরিষ্কার করা:</div>
+                  <p class="step-desc">
+                    ২য় সারিকে $-7$ দিয়ে ভাগ করলে সহজ হয়: $R_2 \leftarrow -\frac{1}{7}R_2 \implies [0, 1, 2 \mid 4]$।<br>
+                    এখন $R_3 \leftarrow R_3 - 9R_2$:
+                  </p>
+                  <div class="math-display-wrap">
+                    $$\begin{bmatrix}
+                    2 & 1 & 4 & | & 12 \\
+                    0 & 1 & 2 & | & 4 \\
+                    0 & 0 & -27 & | & -27
+                    \end{bmatrix} \implies -27x_3 = -27 \implies \mathbf{x_3 = 1}$$
+                  </div>
+                </div>
+              </div>
+
+              <div class="step-item">
+                <div class="step-indicator">৪</div>
+                <div class="step-body">
+                  <div class="step-title">Back Substitution (চলকসমূহের মান প্রতিস্থাপন):</div>
+                  <div class="math-display-wrap">
+                    $$\text{From Row 3: } x_3 = 1$$
+                    $$\text{From Row 2: } x_2 + 2x_3 = 4 \implies x_2 + 2(1) = 4 \implies x_2 = 2$$
+                    $$\text{From Row 1: } 2x_1 + x_2 + 4x_3 = 12 \implies 2x_1 + 2 + 4(1) = 12 \implies 2x_1 = 6 \implies x_1 = 3$$
+                    $$\therefore \mathbf{[x_1, x_2, x_3] = [3, 2, 1]} \quad \text{(Exact Solution)}$$
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Homework problems from notebook -->
+          <div class="concept-box box-purple">
+            <div class="concept-title"><i class="fas fa-pencil-alt"></i> স্যারের দেওয়া হোমওয়ার্ক সমীকরণগুলো (নোটবুক পেজ ৬, ৮, ১০):</div>
+            <ul style="margin-left:1.5rem; line-height: 1.8;">
+              <li><strong>H.W. 1 (Page 6):</strong> $2x_1 + 3x_2 - x_3 = 5, \; 4x_1 + 4x_2 - 3x_3 = 3, \; ...$</li>
+              <li><strong>H.W. 2 (Page 8):</strong> $2x_1 + 3x_2 + 2x_3 = 11, \; 3x_1 + 2x_2 + x_3 = 10, \; x_1 + 2x_2 + 3x_3 = 14 \implies [x_1=1, x_2=2, x_3=3]$</li>
+              <li><strong>H.W. 3 (Page 10):</strong> $3x_1 + 6x_2 + x_3 = 16, \; 2x_1 + 4x_2 + 3x_3 = 13, \; x_1 + 3x_2 + 2x_3 = 9 \implies [x_1=1, x_2=2, x_3=1]$</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Topic 1.3 -->
+        <article class="topic-card">
+          <div class="topic-header">
+            <div class="topic-meta">
+              <div class="topic-number">১.৩</div>
+              <div class="topic-title-text">
+                <h3>Gauss-Jordan Elimination Method & Comparison</h3>
+                <span>গাউস-জর্ডান অপনয়ন পদ্ধতি (Reduced Row Echelon Form) ও তুলনামূলক ছক</span>
+              </div>
+            </div>
+            <div class="topic-actions">
+              <label class="btn btn-secondary btn-sm" style="cursor:pointer;">
+                <input type="checkbox" class="topic-check-input" data-topic-id="t1_3" style="margin-right:6px;"> সম্পন্ন হয়েছে (Done)
+              </label>
+            </div>
+          </div>
+
+          <div class="concept-box">
+            <div class="concept-title"><i class="fas fa-star"></i> Core Concept (মূল বৈশিষ্ট্য):</div>
+            <p>
+              গাউস-জর্ডান পদ্ধতিতে ম্যাট্রিক্সকে কেবল ঊর্ধ্ব ত্রিভুজাকার করলেই হয় না, বরং সরাসরি <strong>Reduced Row Echelon Form</strong> অর্থাৎ কর্ণ বরাবর ১ এবং বাকি সব উপাদান ০ (আইডেন্টিটি ম্যাট্রিক্স $[I \mid X]$) এ রূপান্তর করা হয়। ফলে <em>কোনো ব্যাক সাবস্টিটিউশন ছাড়াই</em> ডান কলাম থেকে সরাসরি চলকগুলোর চূড়ান্ত উত্তর পাওয়া যায়!
+            </p>
+          </div>
+
+          <!-- Comparison Table (Exact exam question from page 47) -->
+          <div class="concept-box box-warning">
+            <div class="concept-title"><i class="fas fa-balance-scale"></i> Difference between Gauss Elimination and Gauss-Jordan Elimination (নোটবুক পেজ ৪৭):</div>
+            <div class="table-responsive">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>Criteria (তুলনার বিষয়)</th>
+                    <th>Gauss Elimination Method</th>
+                    <th>Gauss-Jordan Elimination Method</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Final Matrix Form</strong></td>
+                    <td>Upper Triangular Matrix (কর্ণের নিচে ০)</td>
+                    <td>Reduced Row Echelon Form $[I]$ (কর্ণে ১, বাকি সব ০)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Back Substitution</strong></td>
+                    <td>অবশ্যই প্রয়োজন হয় (Required)</td>
+                    <td>কোনো প্রয়োজন নেই (Not required)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Operations Count</strong></td>
+                    <td>তুলনামূলক কম ($\approx \frac{n^3}{3}$ অপারেশন)</td>
+                    <td>প্রায় ৫০% বেশি অপারেশন লাগে ($\approx \frac{n^3}{2}$)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Primary Application</strong></td>
+                    <td>রৈখিক সমীকরণ জোট দ্রুত সমাধান করতে</td>
+                    <td>ম্যাট্রিক্স ইনভার্স ($A^{-1}$) বের করার ক্ষেত্রে শ্রেষ্ঠ</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Solved Gauss Jordan problem (Page 48-51) -->
+          <div class="solved-problem-box">
+            <span class="problem-badge">Class Note Page 48-51 (Solved)</span>
+            <div class="problem-statement">
+              <strong>Problem:</strong> Gauss-Jordan পদ্ধতি ব্যবহার করে সমাধান করুন:
+              $$2x_1 + x_2 + 4x_3 = 12, \quad 8x_1 - 3x_2 + 2x_3 = 20, \quad 4x_1 + 11x_2 - x_3 = 33$$
+            </div>
+
+            <div class="math-display-wrap">
+              $$\begin{bmatrix}
+              1 & \frac{1}{2} & 2 & | & 6 \\
+              0 & 1 & 2 & | & 4 \\
+              0 & 0 & 1 & | & 1
+              \end{bmatrix} \xrightarrow{\substack{R_1 \leftarrow R_1 - 2R_3 \\ R_2 \leftarrow R_2 - 2R_3}} 
+              \begin{bmatrix}
+              1 & \frac{1}{2} & 0 & | & 4 \\
+              0 & 1 & 0 & | & 2 \\
+              0 & 0 & 1 & | & 1
+              \end{bmatrix} \xrightarrow{R_1 \leftarrow R_1 - \frac{1}{2}R_2}
+              \begin{bmatrix}
+              \mathbf{1} & \mathbf{0} & \mathbf{0} & | & \mathbf{3} \\
+              \mathbf{0} & \mathbf{1} & \mathbf{0} & | & \mathbf{2} \\
+              \mathbf{0} & \mathbf{0} & \mathbf{1} & | & \mathbf{1}
+              \end{bmatrix}$$
+            </div>
+            <p style="color:#10b981; font-weight:bold; font-size:1.1rem; text-align:center;">
+              সরাসরি সমাধান: $\mathbf{x_1 = 3, \; x_2 = 2, \; x_3 = 1}$
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         MODULE 2: SOLUTION OF EQUATIONS / ROOT FINDING (HOUR 2)
+         ====================================================================== -->
+    <div class="module-content-pane" id="mod-2">
+      <div class="module-banner">
+        <div class="banner-left">
+          <span class="banner-pill"><i class="fas fa-crosshairs"></i> Module 2 • Hour 2 (মডিউল ২ • ২য় ঘণ্টা)</span>
+          <h2 class="banner-title">Solution of Algebraic & Transcendental Equations</h2>
+          <p class="banner-desc">
+            নোটবুকের পেজ ১২-৪৪ কভার করে। Bisection Method, Newton-Raphson Method, False Position (Regula-Falsi) এবং সায়েন্টিফিক ক্যালকুলেটরের শর্টকাট ট্রিকস!
+          </p>
+        </div>
+        <div class="banner-right">
+          <span class="badge badge-exam">সম্ভাব্য মার্কস: ১৫–২০</span>
+        </div>
+      </div>
+
+      <div class="topics-stack">
+
+        <!-- Topic 2.1 -->
+        <article class="topic-card">
+          <div class="topic-header">
+            <div class="topic-meta">
+              <div class="topic-number">২.১</div>
+              <div class="topic-title-text">
+                <h3>Bisection Method & Intermediate Value Theorem</h3>
+                <span>দ্বিখণ্ডন পদ্ধতি, অন্তর্বর্তী মান উপপাদ্য ও ক্লাসের সলভড অঙ্ক ($x^3-2x^2-4=0$)</span>
+              </div>
+            </div>
+            <div class="topic-actions">
+              <label class="btn btn-secondary btn-sm" style="cursor:pointer;">
+                <input type="checkbox" class="topic-check-input" data-topic-id="t2_1" style="margin-right:6px;"> সম্পন্ন হয়েছে (Done)
+              </label>
+            </div>
+          </div>
+
+          <div class="concept-box box-success">
+            <div class="concept-title"><i class="fas fa-check-double"></i> Intermediate Value Theorem (মূল অস্তিত্বের শর্ত):</div>
+            <p>
+              If a function $f(x)$ is continuous on the closed interval $[a, b]$ and <strong>$f(a) \cdot f(b) < 0$</strong> (that is, $f(a)$ and $f(b)$ have opposite signs), then there exists at least one real root $x = \alpha$ between $a$ and $b$ such that $f(\alpha) = 0$.
+            </p>
+          </div>
+
+          <div class="concept-box">
+            <div class="concept-title"><i class="fas fa-cog"></i> Bisection Algorithm (ধাপসমূহ):</div>
+            <ol style="margin-left:1.5rem; line-height:1.8;">
+              <li>ব্যবধিকে ঠিক মাঝখানে দ্বিখণ্ডিত করে মধ্যবিন্দু বের করা: $x_r = \frac{a + b}{2}$।</li>
+              <li>$f(x_r)$ এর মান নির্ণয় করে চিহ্ন দেখা। যদি $f(x_r) = 0$, তবে $x_r$ ই মূল।</li>
+              <li>যদি $f(a) \cdot f(x_r) < 0$ হয় $\implies$ মূল $[a, x_r]$ এ আছে, তাই $b = x_r$।</li>
+              <li>যদি $f(x_r) \cdot f(b) < 0$ হয় $\implies$ মূল $[x_r, b]$ এ আছে, তাই $a = x_r$।</li>
+            </ol>
+          </div>
+
+          <!-- Solved Problem from Notebook (Page 23-26) -->
+          <div class="solved-problem-box">
+            <span class="problem-badge">Class Note Page 23-26 (Solved)</span>
+            <div class="problem-statement">
+              <strong>Problem:</strong> Find a real root of the equation $x^3 - 2x^2 - 4 = 0$ by using Bisection Method.
+            </div>
+
+            <p style="margin-bottom:8px;">
+              $f(x) = x^3 - 2x^2 - 4$<br>
+              $f(2) = 2^3 - 2(2^2) - 4 = 8 - 8 - 4 = -4 < 0$ (-ve)<br>
+              $f(3) = 3^3 - 2(3^2) - 4 = 27 - 18 - 4 = +5 > 0$ (+ve)<br>
+              Since $f(2) \cdot f(3) < 0$, root lies in $[2, 3]$ ($a=2, b=3$):
+            </p>
+
+            <div class="table-responsive">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>Iteration (n)</th>
+                    <th>a</th>
+                    <th>b</th>
+                    <th>$x_r = \frac{a+b}{2}$</th>
+                    <th>$f(x_r)$</th>
+                    <th>Sign (চিহ্ন)</th>
+                    <th>Next Interval</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>1st</td><td>2.000</td><td>3.000</td><td style="color:#38bdf8; font-weight:bold;">2.500</td><td>$-0.875$</td><td>&lt; 0 (-)</td><td>$[2.5, 3]$</td></tr>
+                  <tr><td>2nd</td><td>2.500</td><td>3.000</td><td style="color:#38bdf8; font-weight:bold;">2.750</td><td>$+1.672$</td><td>&gt; 0 (+)</td><td>$[2.5, 2.75]$</td></tr>
+                  <tr><td>3rd</td><td>2.500</td><td>2.750</td><td style="color:#38bdf8; font-weight:bold;">2.625</td><td>$+0.307$</td><td>&gt; 0 (+)</td><td>$[2.5, 2.625]$</td></tr>
+                  <tr><td>4th</td><td>2.500</td><td>2.625</td><td style="color:#38bdf8; font-weight:bold;">2.5625</td><td>$-0.306$</td><td>&lt; 0 (-)</td><td>$[2.5625, 2.625]$</td></tr>
+                  <tr><td>5th</td><td>2.5625</td><td>2.625</td><td style="color:#38bdf8; font-weight:bold;">2.59375</td><td>$-0.005$</td><td>&lt; 0 (-)</td><td>$[2.59375, 2.625]$</td></tr>
+                  <tr><td>6th</td><td>2.59375</td><td>2.625</td><td style="color:#38bdf8; font-weight:bold;">2.60938</td><td>$+0.149$</td><td>&gt; 0 (+)</td><td>$[2.59375, 2.60938]$</td></tr>
+                  <tr><td>7th</td><td>2.59375</td><td>2.60938</td><td style="color:#10b981; font-weight:bold;">2.59766</td><td>$-0.0003$</td><td>&lt; 0 (-)</td><td>$[2.59766, ...]$</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p style="color:#10b981; font-weight:bold; margin-top:8px;">
+              🎯 উত্তর: ৭ম ধাপে আসন্ন মূল $\mathbf{x \approx 2.598}$ (Correct to 3 decimal places).
+            </p>
+          </div>
+        </article>
+
+        <!-- Topic 2.2 -->
+        <article class="topic-card">
+          <div class="topic-header">
+            <div class="topic-meta">
+              <div class="topic-number">২.২</div>
+              <div class="topic-title-text">
+                <h3>Newton-Raphson Method & Complete Derivation</h3>
+                <span>নিউটন-র‍্যাফসন পদ্ধতি: স্পর্শকের জ্যামিতিক প্রতিপাদন, দ্বিঘাত অভিসারিতা ও হোমওয়ার্ক অঙ্ক</span>
+              </div>
+            </div>
+            <div class="topic-actions">
+              <label class="btn btn-secondary btn-sm" style="cursor:pointer;">
+                <input type="checkbox" class="topic-check-input" data-topic-id="t2_2" style="margin-right:6px;"> সম্পন্ন হয়েছে (Done)
+              </label>
+            </div>
+          </div>
+
+          <!-- Derivation Box (From Notebook Page 27-31) -->
+          <div class="concept-box box-purple">
+            <div class="concept-title"><i class="fas fa-graduation-cap"></i> Geometric Derivation of Newton-Raphson Formula (পেজ ২৭–৩১):</div>
+            <p>
+              Let $y = f(x)$ represent the curve which cuts the $x$-axis at point $R$, so $x = R$ is the exact root of $f(x) = 0$.<br>
+              Let $x_0$ be an initial approximate value of the root. Draw a tangent to the curve at point $P(x_0, f(x_0))$. The tangent line intersects the $x$-axis at $T_1(x_1, 0)$.
+            </p>
+            <p style="margin-top:8px;">
+              The slope of the tangent line at $P$:
+              $$f'(x_0) = \tan \theta = \frac{f(x_0) - 0}{x_0 - x_1}$$
+              $$\implies x_0 - x_1 = \frac{f(x_0)}{f'(x_0)} \implies \mathbf{x_1 = x_0 - \frac{f(x_0)}{f'(x_0)}}$$
+            </p>
+            <p style="margin-top:8px;">
+              Similarly, drawing a tangent at $(x_1, f(x_1))$ gives $x_2$. Thus, the general iterative recurrence formula is:
+            </p>
+            <div class="math-display-wrap">
+              $$\mathbf{x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}} \quad (n = 0, 1, 2, ...)$$
+            </div>
+            <ul style="margin: 0.75rem 0 0 1.5rem; line-height: 1.8;">
+              <li><strong>Order of Convergence:</strong> Quadratic (দ্বিঘাত, $p = 2$)। প্রতি ধাপে ত্রুটি বর্গাকারে হ্রাস পায়: $e_{n+1} \approx C e_n^2$।</li>
+              <li><strong>Failure Condition (ব্যর্থ হওয়ার শর্ত):</strong> যদি কোনো ধাপে $f'(x_n) = 0$ হয়ে যায়, তখন স্পর্শকটি অনুভূমিক (horizontal) হওয়ায় $x$-অক্ষকে আর ছেদ করে না এবং পদ্ধতিটি ব্যর্থ হয়।</li>
+            </ul>
+          </div>
+
+          <!-- Solved Problem 1 (Notebook Page 32-35) -->
+          <div class="solved-problem-box">
+            <span class="problem-badge">Class Note Page 32-35 (Solved)</span>
+            <div class="problem-statement">
+              <strong>Problem:</strong> Find a real root of $x^3 - 2x^2 - 4 = 0$ using Newton-Raphson Method.
+            </div>
+
+            <p>
+              $f(x) = x^3 - 2x^2 - 4 \implies f'(x) = 3x^2 - 4x$। Initial guess $x_0 = 2.6$:
+            </p>
+            <div class="math-display-wrap">
+              $$x_1 = 2.6 - \frac{f(2.6)}{f'(2.6)} = 2.6 - \frac{0.056}{9.88} = \mathbf{2.59433}$$
+              $$x_2 = 2.59433 - \frac{f(2.59433)}{f'(2.59433)} = 2.59433 - \frac{-0.0343}{9.816} = \mathbf{2.59782}$$
+            </div>
+            <p style="color:#10b981; font-weight:bold;">
+              🎯 মাত্র ২টি ধাপে নির্ভুল মূল $x \approx 2.5978$ চলে আসে!
+            </p>
+          </div>
+
+          <!-- Solved Problem 2: Homework Problem (Notebook Page 42-44) -->
+          <div class="solved-problem-box" style="border-color:#38bdf8;">
+            <span class="problem-badge" style="background:#0284c7; color:#fff;">Class Note Page 42-44 (H.W. Solved)</span>
+            <div class="problem-statement">
+              <strong>H.W. Problem:</strong> Find a real root of the equation $\sin x = 10(x - 1)$ by using Newton-Raphson Method correct to 8 decimal places.
+            </div>
+
+            <p>
+              Let $f(x) = \sin x - 10(x - 1)$ and $f'(x) = \cos x - 10$।<br>
+              $f(1) = \sin 1 > 0$ and $f(2) = \sin 2 - 10 < 0$। Root lies in $[1, 2]$। Take $x_0 = 1.5$:
+            </p>
+            <div class="math-display-wrap">
+              $$x_1 = 1.5 - \frac{\sin(1.5) - 10(0.5)}{\cos(1.5) - 10} = \mathbf{1.096898068}$$
+              $$x_2 = 1.096898068 - \frac{f(1.096898068)}{f'(1.096898068)} = \mathbf{1.08860096}$$
+            </div>
+            <p style="color:#38bdf8; font-weight:bold;">
+              🎯 ৮ ঘর পর্যন্ত নির্ভুল মূল: $\mathbf{x \approx 1.08860096}$
+            </p>
+          </div>
+
+          <!-- Casio Calculator Hack Box (As highlighted in Notebook Page 35) -->
+          <div class="calc-hack-card">
+            <div class="calc-hack-head">
+              <div class="calc-icon"><i class="fas fa-bolt"></i></div>
+              <div>
+                <h4 style="color:#fff; font-size:1.15rem;">ক্যালকুলেটর হ্যাক (নোটবুক পেজ ৩৫ এর Calculator Hack):</h4>
+                <span style="font-size:0.85rem; color:#fde68a;">Casio fx-991ES / fx-991EX তে ৫ সেকেন্ডে সব ধাপ বের করার ট্রিক</span>
+              </div>
+            </div>
+
+            <div class="calc-hack-steps">
+              <div class="calc-step">
+                <span class="calc-key">১</span>
+                <span>ক্যালকুলেটরে প্রাথমিক অনুমান টাইপ করুন: <span class="calc-key">2.6</span> এবং <span class="calc-key">=</span> চাপুন (যাতে এটি <code>Ans</code> মেমোরিতে সেভ হয়)।</span>
+              </div>
+              <div class="calc-step">
+                <span class="calc-key">২</span>
+                <span>এখন হুবহু এই সূত্রটি টাইপ করুন:<br>
+                  <span class="calc-key">Ans</span> <span class="calc-key">-</span> 
+                  <span class="calc-key">(</span> <span class="calc-key">Ans</span><span class="calc-key">x³</span> <span class="calc-key">-</span> <span class="calc-key">2</span><span class="calc-key">Ans</span><span class="calc-key">x²</span> <span class="calc-key">-</span> <span class="calc-key">4</span> <span class="calc-key">)</span>
+                  <span class="calc-key">÷</span> 
+                  <span class="calc-key">(</span> <span class="calc-key">3</span><span class="calc-key">Ans</span><span class="calc-key">x²</span> <span class="calc-key">-</span> <span class="calc-key">4</span><span class="calc-key">Ans</span> <span class="calc-key">)</span>
+                </span>
+              </div>
+              <div class="calc-step">
+                <span class="calc-key">৩</span>
+                <span>এবার একবার <span class="calc-key">=</span> চাপলেই চলে আসবে $x_1 = 2.59433$! দ্বিতীয়বার <span class="calc-key">=</span> চাপলে $x_2 = 2.59782$! খাতায় শুধু এগুলো লিখে দিন!</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Topic 2.3 -->
+        <article class="topic-card">
+          <div class="topic-header">
+            <div class="topic-meta">
+              <div class="topic-number">২.৩</div>
+              <div class="topic-title-text">
+                <h3>Regula-Falsi (False Position) Method & Derivation</h3>
+                <span>মিথ্যা অবস্থান পদ্ধতি: জ্যা (Chord) সমীকরণ থেকে প্রতিপাদন ও ক্লাসের সলভড অঙ্ক ($x^7+\ln x-2=0$)</span>
+              </div>
+            </div>
+            <div class="topic-actions">
+              <label class="btn btn-secondary btn-sm" style="cursor:pointer;">
+                <input type="checkbox" class="topic-check-input" data-topic-id="t2_3" style="margin-right:6px;"> সম্পন্ন হয়েছে (Done)
+              </label>
+            </div>
+          </div>
+
+          <div class="concept-box box-success">
+            <div class="concept-title"><i class="fas fa-draw-polygon"></i> Derivation of False Position Formula (পেজ ৩৬–৩৮):</div>
+            <p>
+              বক্ররেখার উপরস্থ দুটি বিন্দু $A(a, f(a))$ এবং $B(b, f(b))$ কে সংযুক্তকারী সরলরেখার (Chord) সমীকরণ:
+              $$\frac{y - f(a)}{x - a} = \frac{f(b) - f(a)}{b - a}$$
+              যে বিন্দুতে এই জ্যাটি $x$-অক্ষকে ছেদ করে সেখানে $y = 0$:
+              $$\frac{0 - f(a)}{x_r - a} = \frac{f(b) - f(a)}{b - a} \implies -f(a)(b - a) = (x_r - a)[f(b) - f(a)]$$
+              $$\implies x_r - a = \frac{-b f(a) + a f(a)}{f(b) - f(a)} \implies \mathbf{x_r = \frac{a f(b) - b f(a)}{f(b) - f(a)}}$$
+            </p>
+          </div>
+
+          <!-- Solved Problem from Notebook (Page 39-42) -->
+          <div class="solved-problem-box">
+            <span class="problem-badge">Class Note Page 39-42 (Solved)</span>
+            <div class="problem-statement">
+              <strong>Problem-03:</strong> Find a real root of the equation $x^7 + \ln x - 2 = 0$ in the interval $[1, 2]$ by using False Position Method.
+            </div>
+
+            <p>
+              $f(x) = x^7 + \ln x - 2$<br>
+              $f(1) = 1 + 0 - 2 = -1 < 0$ (-ve)<br>
+              $f(2) = 128 + 0.69315 - 2 = 126.69315 > 0$ (+ve)<br>
+              Root lies in $[1, 2]$ ($a=1, b=2$):
+            </p>
+
+            <div class="math-display-wrap">
+              $$x_1 = \frac{1(126.69315) - 2(-1)}{126.69315 - (-1)} = \frac{128.69315}{127.69315} = \mathbf{1.00783}$$
+              $$f(x_1) = (1.00783)^7 + \ln(1.00783) - 2 = -0.9363 < 0 \implies [1.00783, 2]$$
+              $$x_2 = \frac{1.00783(126.69315) - 2(-0.9363)}{126.69315 - (-0.9363)} = \mathbf{1.01511}$$
+              $$\vdots \quad (\text{ধাপে ধাপে অগ্রসর হয়ে})$$
+              $$x_6 = \frac{x_5 f(b) - b f(x_5)}{f(b) - f(x_5)} = \mathbf{1.314096}$$
+            </div>
+            <p style="color:#10b981; font-weight:bold;">
+              🎯 নির্ণীত মূল: $\mathbf{x \approx 1.314096}$ (পেজ ৪২ অনুযায়ী)।
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         MODULE 3: FINITE DIFFERENCES & EQUAL INTERVAL INTERPOLATION (HOUR 3)
+         ====================================================================== -->
+    <div class="module-content-pane" id="mod-3">
+      <div class="module-banner">
+        <div class="banner-left">
+          <span class="banner-pill"><i class="fas fa-chart-line"></i> Module 3 • Hour 3 (মডিউল ৩ • ৩য় ঘণ্টা)</span>
+          <h2 class="banner-title">Finite Differences & Equal Interval Interpolation</h2>
+          <p class="banner-desc">
+            নোটবুকের পেজ ৫৬-৮৭ কভার করে। $\Delta, \nabla, E$ অপারেটর সম্পর্ক, ডিফারেন্স টেবিল, নিউটনের অগ্রবর্তী ও পশ্চাদবর্তী সূত্রের সম্পূর্ণ প্রতিপাদন ও ক্লাসের সলভড অঙ্ক।
+          </p>
+        </div>
+        <div class="banner-right">
+          <span class="badge badge-exam">সম্ভাব্য মার্কস: ১৫–২০</span>
+        </div>
+      </div>
+
+      <div class="topics-stack">
+
+        <!-- Topic 3.1 -->
+        <article class="topic-card">
+          <div class="topic-header">
+            <div class="topic-meta">
+              <div class="topic-number">৩.১</div>
+              <div class="topic-title-text">
+                <h3>Finite Difference Operators & Difference Table</h3>
+                <span>সসীম অন্তর অপারেটর ($\Delta, \nabla, E$), সম্পর্ক ও ডিফারেন্স টেবিল তৈরি</span>
+              </div>
+            </div>
+            <div class="topic-actions">
+              <label class="btn btn-secondary btn-sm" style="cursor:pointer;">
+                <input type="checkbox" class="topic-check-input" data-topic-id="t3_1" style="margin-right:6px;"> সম্পন্ন হয়েছে (Done)
+              </label>
+            </div>
+          </div>
+
+          <div class="concept-box box-success">
+            <div class="concept-title"><i class="fas fa-calculator"></i> Three Core Difference Operators & Identities:</div>
+            <div class="table-responsive">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>Operator</th>
+                    <th>Symbol</th>
+                    <th>Definition</th>
+                    <th>Relationship</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Forward Difference</strong></td>
+                    <td>$\Delta$</td>
+                    <td>$\Delta f(x) = f(x+h) - f(x)$</td>
+                    <td>$\Delta = E - 1$</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Backward Difference</strong></td>
+                    <td>$\nabla$</td>
+                    <td>$\nabla f(x) = f(x) - f(x-h)$</td>
+                    <td>$\nabla = 1 - E^{-1}$</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Shift Operator</strong></td>
+                    <td>$E$</td>
+                    <td>$E f(x) = f(x+h)$</td>
+                    <td>$E = 1 + \Delta = (1 - \nabla)^{-1}$</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Problem from Notebook (Page 69-70) -->
+          <div class="solved-problem-box">
+            <span class="problem-badge">Class Note Page 69-70 (Solved)</span>
+            <div class="problem-statement">
+              <strong>Problem:</strong> Construct a finite difference table for the function $f(x) = x^3 - 3x + 1$ in the interval $2 \le x \le 3$ with $h = 0.1$.
+            </div>
+
+            <p style="margin-bottom:8px;">
+              $x$ এর মানসমূহ: $2.0, 2.1, 2.2, ..., 3.0$। ফাংশনটির ডিগ্রি ৩ (Cubic):
+            </p>
+            <div class="math-display-wrap">
+              $$f(2.0) = 8 - 6 + 1 = 3.000$$
+              $$f(2.1) = 9.261 - 6.3 + 1 = 3.961 \implies \Delta y_0 = 3.961 - 3.000 = 0.961$$
+              $$\vdots$$
+              $$\mathbf{\Delta^3 y = \text{Constant (ধ্রুবক)} = 0.006}$$
+              $$\mathbf{\Delta^4 y = 0 \quad (\text{শূন্য})}$$
+            </div>
+            <p style="color:#10b981; font-weight:bold;">
+              💡 Fundamental Theorem of Finite Differences (পেজ ৭০): $n$-তম মাত্রার বহুপদীর $n$-তম অন্তর সর্বদা ধ্রুবক এবং $(n+1)$-তম ও পরবর্তী সকল অন্তর শূন্য হয়!
+            </p>
+          </div>
+        </article>
+
+        <!-- Topic 3.2 -->
+        <article class="topic-card">
+          <div class="topic-header">
+            <div class="topic-meta">
+              <div class="topic-number">৩.২</div>
+              <div class="topic-title-text">
+                <h3>Newton's Forward Differences Interpolation Formula</h3>
+                <span>নিউটনের অগ্রবর্তী সূত্র: সম্পূর্ণ গাণিতিক প্রতিপাদন ও আদমশুমারি জনসংখ্যা নির্ণয় ম্যাথ (১৯০৫)</span>
+              </div>
+            </div>
+            <div class="topic-actions">
+              <label class="btn btn-secondary btn-sm" style="cursor:pointer;">
+                <input type="checkbox" class="topic-check-input" data-topic-id="t3_2" style="margin-right:6px;"> সম্পন্ন হয়েছে (Done)
+              </label>
+            </div>
+          </div>
+
+          <div class="concept-box box-purple">
+            <div class="concept-title"><i class="fas fa-square-root-alt"></i> Complete Mathematical Derivation (নোটবুক পেজ ৬১–৬৫):</div>
+            <p>
+              Let $y = f(x)$ take tabulated values $y_0, y_1, ..., y_n$ at equidistant points $x_0, x_1, ..., x_n$ where $x_i = x_0 + ih$.<br>
+              Assume the interpolating polynomial:
+              $$P(x) = a_0 + a_1(x-x_0) + a_2(x-x_0)(x-x_1) + ... + a_n(x-x_0)...(x-x_{n-1})$$
+              Setting $x = x_0 \implies a_0 = y_0$।<br>
+              Setting $x = x_1 = x_0 + h \implies y_1 = a_0 + a_1 h \implies a_1 = \frac{y_1 - y_0}{h} = \frac{\Delta y_0}{1! h}$।<br>
+              Setting $x = x_2 \implies a_2 = \frac{\Delta^2 y_0}{2! h^2}$, ..., $a_n = \frac{\Delta^n y_0}{n! h^n}$।<br>
+              Let $u = \frac{x - x_0}{h} \implies x - x_0 = uh, \; x - x_1 = (u-1)h, ...$<br>
+              Substituting these into $P(x)$, we obtain Newton's Forward Interpolation Formula:
+            </p>
+            <div class="math-display-wrap">
+              $$\mathbf{y(x) = y_0 + u \Delta y_0 + \frac{u(u-1)}{2!} \Delta^2 y_0 + \frac{u(u-1)(u-2)}{3!} \Delta^3 y_0 + ...}$$
+              $$\text{where } \mathbf{u = \frac{x - x_0}{h}}$$
+            </div>
+            <small style="color:var(--accent-cyan); display:block; margin-top:6px;">
+              👉 ব্যবহারের নিয়ম: যখন নির্ণেয় মান $x$ ছকের শুরুর দিকের মানের কাছাকাছি থাকে তখন এই ফরোয়ার্ড সূত্র ব্যবহৃত হয়।
+            </small>
+          </div>
+
+          <!-- Solved Population Math (Page 83-84) -->
+          <div class="solved-problem-box">
+            <span class="problem-badge">Class Note Page 83-84 (Solved)</span>
+            <div class="problem-statement">
+              <strong>Problem-01:</strong> Using Newton's formula for interpolation, estimate the population for the year 1905:
+              <div class="table-responsive" style="margin-top:8px;">
+                <table class="custom-table">
+                  <tr><th>Year (x)</th><td>1891</td><td>1901</td><td>1911</td><td>1921</td><td>1931</td></tr>
+                  <tr><th>Population (y)</th><td>98752</td><td>132285</td><td>168076</td><td>195690</td><td>246050</td></tr>
+                </table>
+              </div>
+            </div>
+
+            <p>
+              $x = 1905$ lies near the beginning of the table ($x_0 = 1891, h = 10$):<br>
+              $$u = \frac{x - x_0}{h} = \frac{1905 - 1891}{10} = \frac{14}{10} = \mathbf{1.4}$$
+            </p>
+
+            <div class="math-display-wrap">
+              $$\Delta y_0 = 33533, \quad \Delta^2 y_0 = 2258, \quad \Delta^3 y_0 = -10435, \quad \Delta^4 y_0 = 41358$$
+              $$y(1905) = 98752 + (1.4)(33533) + \frac{(1.4)(0.4)}{2}(2258) + \frac{(1.4)(0.4)(-0.6)}{6}(-10435) + ...$$
+              $$\mathbf{y(1905) \approx 146196} \quad \text{Ans.}$$
+            </div>
+          </div>
+        </article>
+
+        <!-- Topic 3.3 -->
+        <article class="topic-card">
+          <div class="topic-header">
+            <div class="topic-meta">
+              <div class="topic-number">৩.৩</div>
+              <div class="topic-title-text">
+                <h3>Newton's Backward Differences Interpolation Formula</h3>
+                <span>নিউটনের পশ্চাদবর্তী সূত্র: সম্পূর্ণ গাণিতিক প্রতিপাদন ও $\tan(0.26)$ নির্ণয় অঙ্ক</span>
+              </div>
+            </div>
+            <div class="topic-actions">
+              <label class="btn btn-secondary btn-sm" style="cursor:pointer;">
+                <input type="checkbox" class="topic-check-input" data-topic-id="t3_3" style="margin-right:6px;"> সম্পন্ন হয়েছে (Done)
+              </label>
+            </div>
+          </div>
+
+          <div class="concept-box box-purple">
+            <div class="concept-title"><i class="fas fa-history"></i> Complete Mathematical Formula (নোটবুক পেজ ৭৮–৮২):</div>
+            <div class="math-display-wrap">
+              $$\mathbf{y(x) = y_n + u \nabla y_n + \frac{u(u+1)}{2!} \nabla^2 y_n + \frac{u(u+1)(u+2)}{3!} \nabla^3 y_n + ...}$$
+              $$\text{where } \mathbf{u = \frac{x - x_n}{h}}$$
+            </div>
+            <small style="color:var(--accent-amber); display:block; margin-top:6px;">
+              👉 মনে রাখবেন: ফরোয়ার্ড সূত্রে $(u-1)$ থাকে, কিন্তু ব্যাকওয়ার্ড সূত্রে প্লাস চিহ্ন $(u+1)$ থাকে এবং শেষ মান $y_n$ ও $\nabla y_n$ ব্যবহৃত হয়!
+            </small>
+          </div>
+
+          <!-- Solved tan(0.26) Problem (Page 85-87) -->
+          <div class="solved-problem-box">
+            <span class="problem-badge">Class Note Page 85-87 (Solved)</span>
+            <div class="problem-statement">
+              <strong>Problem-02:</strong> The table given below gives the value of $\tan x$ for $0.10 \le x \le 0.30$. Estimate $\tan(0.26)$:
+              <div class="table-responsive" style="margin-top:8px;">
+                <table class="custom-table">
+                  <tr><th>x</th><td>0.10</td><td>0.15</td><td>0.20</td><td>0.25</td><td>0.30</td></tr>
+                  <tr><th>y = tan x</th><td>0.1003</td><td>0.1511</td><td>0.2027</td><td>0.2553</td><td>0.3093</td></tr>
+                </table>
+              </div>
+            </div>
+
+            <p>
+              $x = 0.26$ lies near the end of the table ($x_n = 0.30, h = 0.05$):<br>
+              $$u = \frac{x - x_n}{h} = \frac{0.26 - 0.30}{0.05} = \mathbf{-0.8}$$
+            </p>
+
+            <div class="math-display-wrap">
+              $$\nabla y_n = 0.0540, \quad \nabla^2 y_n = 0.0014, \quad \nabla^3 y_n = 0.0004$$
+              $$y(0.26) = 0.3093 + (-0.8)(0.0540) + \frac{(-0.8)(-0.8+1)}{2}(0.0014) + ... = \mathbf{0.265971}$$
+            </div>
+            <p style="color:#10b981; font-weight:bold;">
+              🎯 প্রকৃত মান: $\tan(0.26) = 0.266021$। ত্রুটি মাত্র $0.00005$!
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         MODULE 4: UNEQUAL INTERVAL INTERPOLATION (HOUR 4)
+         ====================================================================== -->
+    <div class="module-content-pane" id="mod-4">
+      <div class="module-banner">
+        <div class="banner-left">
+          <span class="banner-pill"><i class="fas fa-bezier-curve"></i> Module 4 • Hour 4 (মডিউল ৪ • ৪র্থ ঘণ্টা)</span>
+          <h2 class="banner-title">Interpolation with Unequal Intervals</h2>
+          <p class="banner-desc">
+            নোটবুকের পেজ ৮৮-৯৩ কভার করে। ডিভাইডেড ডিফারেন্স টেবিল, নিউটনের জেনারেল ডিভাইডেড ডিফারেন্স সূত্র এবং ল্যাগ্রাঞ্জের পূর্ণাঙ্গ গাণিতিক প্রতিপাদন।
+          </p>
+        </div>
+        <div class="banner-right">
+          <span class="badge badge-exam">সম্ভাব্য মার্কস: ১৫–২০</span>
+        </div>
+      </div>
+
+      <div class="topics-stack">
+
+        <!-- Topic 4.1 -->
+        <article class="topic-card">
+          <div class="topic-header">
+            <div class="topic-meta">
+              <div class="topic-number">৪.১</div>
+              <div class="topic-title-text">
+                <h3>Divided Differences & Newton's General Interpolation Formula</h3>
+                <span>ডিভাইডেড ডিফারেন্স সংজ্ঞা, সারণি ও ক্লাসের সলভড অঙ্ক ($f(8)$ ও $f(15)$)</span>
+              </div>
+            </div>
+            <div class="topic-actions">
+              <label class="btn btn-secondary btn-sm" style="cursor:pointer;">
+                <input type="checkbox" class="topic-check-input" data-topic-id="t4_1" style="margin-right:6px;"> সম্পন্ন হয়েছে (Done)
+              </label>
+            </div>
+          </div>
+
+          <div class="concept-box box-success">
+            <div class="concept-title"><i class="fas fa-calculator"></i> Divided Differences Definitions:</div>
+            <p>
+              1st order: $f[x_0, x_1] = \frac{f(x_1) - f(x_0)}{x_1 - x_0}$<br>
+              2nd order: $f[x_0, x_1, x_2] = \frac{f[x_1, x_2] - f[x_0, x_1]}{x_2 - x_0}$<br>
+              3rd order: $f[x_0, x_1, x_2, x_3] = \frac{f[x_1, x_2, x_3] - f[x_0, x_1, x_2]}{x_3 - x_0}$
+            </p>
+            <div class="math-display-wrap">
+              $$\mathbf{f(x) = f(x_0) + (x - x_0)f[x_0, x_1] + (x - x_0)(x - x_1)f[x_0, x_1, x_2] + ...}$$
+            </div>
+          </div>
+
+          <!-- Solved Math (Notebook Page 90-91) -->
+          <div class="solved-problem-box">
+            <span class="problem-badge">Class Note Page 90-91 (Solved)</span>
+            <div class="problem-statement">
+              <strong>Problem:</strong> Construct the divided difference table and find $f(8)$ and $f(15)$ from given data:
+              <div class="table-responsive" style="margin-top:8px;">
+                <table class="custom-table">
+                  <tr><th>x</th><td>4</td><td>5</td><td>7</td><td>10</td><td>11</td><td>13</td></tr>
+                  <tr><th>f(x)</th><td>48</td><td>100</td><td>294</td><td>900</td><td>1210</td><td>2028</td></tr>
+                </table>
+              </div>
+            </div>
+
+            <p style="margin-bottom:8px;">
+              ডিভাইডেড ডিফারেন্স টেবিল থেকে ১ম সারির মানগুলো পাওয়া যায়:<br>
+              $f(x_0) = 48, \quad f[x_0, x_1] = 52, \quad f[x_0, x_1, x_2] = 15, \quad f[x_0, x_1, x_2, x_3] = 1$।
+            </p>
+
+            <div class="math-display-wrap">
+              $$f(x) = 48 + (x - 4)(52) + (x - 4)(x - 5)(15) + (x - 4)(x - 5)(x - 7)(1)$$
+              $$\mathbf{f(8)} = 48 + (4)(52) + (4)(3)(15) + (4)(3)(1)(1) = 48 + 208 + 180 + 12 = \mathbf{448}$$
+              $$\mathbf{f(15)} = 48 + (11)(52) + (11)(10)(15) + (11)(10)(8)(1) = 48 + 572 + 1650 + 880 = \mathbf{3150}$$
+            </div>
+          </div>
+        </article>
+
+        <!-- Topic 4.2 -->
+        <article class="topic-card">
+          <div class="topic-header">
+            <div class="topic-meta">
+              <div class="topic-number">৪.২</div>
+              <div class="topic-title-text">
+                <h3>Lagrange's Interpolation Formula & Derivation</h3>
+                <span>ল্যাগ্রাঞ্জ ইন্টারপোলেশন সূত্র: নোটবুকের পেজ ৯২–৯৩ এর সম্পূর্ণ প্রতিপাদন ও সুবিধা</span>
+              </div>
+            </div>
+            <div class="topic-actions">
+              <label class="btn btn-secondary btn-sm" style="cursor:pointer;">
+                <input type="checkbox" class="topic-check-input" data-topic-id="t4_2" style="margin-right:6px;"> সম্পন্ন হয়েছে (Done)
+              </label>
+            </div>
+          </div>
+
+          <div class="concept-box box-purple">
+            <div class="concept-title"><i class="fas fa-graduation-cap"></i> Derivation of Lagrange's Formula (নোটবুক পেজ ৯২–৯৩):</div>
+            <p>
+              Let $y = f(x)$ be given at $(n+1)$ points $(x_0, y_0), (x_1, y_1), ..., (x_n, y_n)$ where spacing need not be equal.<br>
+              We express the interpolating polynomial as:
+              $$P(x) = a_0 (x-x_1)(x-x_2)...(x-x_n) + a_1 (x-x_0)(x-x_2)...(x-x_n) + ... + a_n (x-x_0)(x-x_1)...(x-x_{n-1})$$
+              Setting $x = x_0$, all terms vanish except the first:
+              $$f(x_0) = a_0 (x_0 - x_1)(x_0 - x_2)...(x_0 - x_n) \implies a_0 = \frac{f(x_0)}{(x_0 - x_1)(x_0 - x_2)...(x_0 - x_n)}$$
+              Similarly, setting $x = x_1$:
+              $$a_1 = \frac{f(x_1)}{(x_1 - x_0)(x_1 - x_2)...(x_1 - x_n)}$$
+              Substituting all coefficients $a_0, a_1, ..., a_n$ back into $P(x)$, we obtain Lagrange's Formula:
+            </p>
+            <div class="math-display-wrap">
+              $$\mathbf{P(x) = \frac{(x-x_1)(x-x_2)...(x-x_n)}{(x_0-x_1)(x_0-x_2)...(x_0-x_n)} y_0 + \frac{(x-x_0)(x-x_2)...(x-x_n)}{(x_1-x_0)(x_1-x_2)...(x_1-x_n)} y_1 + ...}$$
+            </div>
+            <div style="background:rgba(16,185,129,0.15); border:1px solid #10b981; border-radius:8px; padding:10px; margin-top:8px;">
+              <strong>💡 ল্যাগ্রাঞ্জ পদ্ধতির মূল সুবিধা:</strong> কোনো ডিফারেন্স টেবিল তৈরি করতে হয় না। সমান ও অসমান যেকোনো ব্যবধানের জন্য সরাসরি সূত্রে মান বসিয়ে সমাধান করা যায়।
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         MODULE 5: NUMERICAL INTEGRATION (HOUR 5)
+         ====================================================================== -->
+    <div class="module-content-pane" id="mod-5">
+      <div class="module-banner">
+        <div class="banner-left">
+          <span class="banner-pill"><i class="fas fa-integral"></i> Module 5 • Hour 5 (মডিউল ৫ • ৫ম ঘণ্টা)</span>
+          <h2 class="banner-title">Numerical Integration (Trapezoidal, Simpson 1/3 & 3/8)</h2>
+          <p class="banner-desc">
+            নোটবুকের পেজ ৫২-৫৫ এবং ৭১-৭৭ কভার করে। Trapezoidal Rule, Simpson's 1/3 Rule এবং Simpson's 3/8 Rule এর প্রয়োগের আবশ্যক শর্ত এবং ক্লাসে করানো দুটি সম্পূর্ণ অঙ্ক।
+          </p>
+        </div>
+        <div class="banner-right">
+          <span class="badge badge-exam">সম্ভাব্য মার্কস: ১৫–২০</span>
+        </div>
+      </div>
+
+      <div class="topics-stack">
+
+        <!-- Topic 5.1 -->
+        <article class="topic-card">
+          <div class="topic-header">
+            <div class="topic-meta">
+              <div class="topic-number">৫.১</div>
+              <div class="topic-title-text">
+                <h3>Numerical Integration Rules & Strict Conditions</h3>
+                <span>সংখ্যাসূচক যোগজীকরণ: ৩টি সূত্রের শর্তাবলী ও তুলনা</span>
+              </div>
+            </div>
+            <div class="topic-actions">
+              <label class="btn btn-secondary btn-sm" style="cursor:pointer;">
+                <input type="checkbox" class="topic-check-input" data-topic-id="t5_1" style="margin-right:6px;"> সম্পন্ন হয়েছে (Done)
+              </label>
+            </div>
+          </div>
+
+          <div class="concept-box box-warning">
+            <div class="concept-title"><i class="fas fa-exclamation-circle"></i> প্রতিটি সূত্রের প্রয়োগের শর্তাবলী (Condition for Application):</div>
+            <div class="table-responsive">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>Rule Name</th>
+                    <th>Essential Condition (শর্ত)</th>
+                    <th>Approximating Curve</th>
+                    <th>Formula</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Trapezoidal Rule</strong></td>
+                    <td>$n$ যে কোনো পূর্ণসংখ্যা ($n \ge 1$)</td>
+                    <td>Straight line (১ম মাত্রা / Linear)</td>
+                    <td>$I = \frac{h}{2} [(y_0 + y_n) + 2(y_1 + y_2 + ... + y_{n-1})]$</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Simpson's 1/3 Rule</strong></td>
+                    <td>$n$ অবশ্যই <strong>জোড় (Even)</strong> সংখ্যা</td>
+                    <td>Parabola (২য় মাত্রা / Parabolic)</td>
+                    <td>$I = \frac{h}{3} [(y_0 + y_n) + 4(y_{\text{odd}}) + 2(y_{\text{even}})]$</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Simpson's 3/8 Rule</strong></td>
+                    <td>$n$ অবশ্যই <strong>৩ এর গুণিতক</strong></td>
+                    <td>Cubic polynomial (৩য় মাত্রা)</td>
+                    <td>$I = \frac{3h}{8} [(y_0 + y_n) + 3(y_1 + y_2 + y_4 + ...) + 2(y_3 + y_6 + ...)]$</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <small style="color:var(--text-muted); display:block; margin-top:8px;">
+              যেখানে উপব্যবধানের দৈর্ঘ্য: $h = \frac{b - a}{n}$।
+            </small>
+          </div>
+        </article>
+
+        <!-- Topic 5.2 -->
+        <article class="topic-card">
+          <div class="topic-header">
+            <div class="topic-meta">
+              <div class="topic-number">৫.২</div>
+              <div class="topic-title-text">
+                <h3>Class Practice Problem 1: Polynomial Function</h3>
+                <span>ক্লাসে সমাধানকৃত প্র্যাকটিস অঙ্ক ১: $\int_0^8 \sqrt{x^2+2x+1}\, dx$ ($n=6$)</span>
+              </div>
+            </div>
+            <div class="topic-actions">
+              <label class="btn btn-secondary btn-sm" style="cursor:pointer;">
+                <input type="checkbox" class="topic-check-input" data-topic-id="t5_2" style="margin-right:6px;"> সম্পন্ন হয়েছে (Done)
+              </label>
+            </div>
+          </div>
+
+          <div class="solved-problem-box">
+            <span class="problem-badge">Class Note Page 72-74 (Solved)</span>
+            <div class="problem-statement">
+              <strong>Practise Math:</strong> Evaluate $\int_0^8 \sqrt{x^2 + 2x + 1}\, dx$ with $n = 6$ using (i) Trapezoidal Rule, (ii) Simpson's 1/3 Rule, and (iii) Simpson's 3/8 Rule.
+            </div>
+
+            <p>
+              $f(x) = \sqrt{x^2 + 2x + 1} = \sqrt{(x+1)^2} = x + 1$।<br>
+              Limits: $a = 0, \; b = 8, \; n = 6 \implies h = \frac{8 - 0}{6} = \frac{4}{3} \approx 1.3333$।
+            </p>
+
+            <div class="table-responsive">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>k</th>
+                    <th>$x_k$</th>
+                    <th>$y_k = f(x_k) = x_k + 1$</th>
+                    <th>Category</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>0</td><td>0</td><td>$1.000$</td><td>$y_0$ (Start)</td></tr>
+                  <tr><td>1</td><td>4/3</td><td>$7/3 \approx 2.333$</td><td>Odd ($y_1$)</td></tr>
+                  <tr><td>2</td><td>8/3</td><td>$11/3 \approx 3.667$</td><td>Even ($y_2$)</td></tr>
+                  <tr><td>3</td><td>12/3 = 4</td><td>$5.000$</td><td>Odd / Multiple of 3 ($y_3$)</td></tr>
+                  <tr><td>4</td><td>16/3</td><td>$19/3 \approx 6.333$</td><td>Even ($y_4$)</td></tr>
+                  <tr><td>5</td><td>20/3</td><td>$23/3 \approx 7.667$</td><td>Odd ($y_5$)</td></tr>
+                  <tr><td>6</td><td>24/3 = 8</td><td>$9.000$</td><td>$y_6$ (End)</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="steps-container" style="margin-top:16px;">
+              <div class="step-item">
+                <div class="step-indicator">১</div>
+                <div class="step-body">
+                  <div class="step-title">Trapezoidal Rule:</div>
+                  <div class="math-display-wrap">
+                    $$I = \frac{4/3}{2} \left[ (1 + 9) + 2\left(\frac{7}{3} + \frac{11}{3} + 5 + \frac{19}{3} + \frac{23}{3}\right) \right] = \frac{2}{3} [ 10 + 2(25) ] = \frac{2}{3}(60) = \mathbf{40.000}$$
+                  </div>
+                </div>
+              </div>
+
+              <div class="step-item">
+                <div class="step-indicator">২</div>
+                <div class="step-body">
+                  <div class="step-title">Simpson's 1/3 Rule ($n=6$ জোড় সংখ্যা):</div>
+                  <div class="math-display-wrap">
+                    $$I = \frac{4/3}{3} \left[ (1 + 9) + 4\left(\frac{7}{3} + 5 + \frac{23}{3}\right) + 2\left(\frac{11}{3} + \frac{19}{3}\right) \right] = \frac{4}{9} [ 10 + 4(15) + 2(10) ] = \frac{4}{9}(90) = \mathbf{40.000}$$
+                  </div>
+                </div>
+              </div>
+
+              <div class="step-item">
+                <div class="step-indicator">৩</div>
+                <div class="step-body">
+                  <div class="step-title">Simpson's 3/8 Rule ($n=6$ ৩ এর গুণিতক):</div>
+                  <div class="math-display-wrap">
+                    $$I = \frac{3(4/3)}{8} \left[ (1 + 9) + 3\left(\frac{7}{3} + \frac{11}{3} + \frac{19}{3} + \frac{23}{3}\right) + 2(5) \right] = \frac{4}{8} [ 10 + 3(20) + 10 ] = \frac{1}{2}(80) = \mathbf{40.000}$$
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p style="color:#10b981; font-weight:bold; margin-top:8px;">
+              🎯 Exact Solution: $\int_0^8 (x+1)\, dx = 40$। যেহেতু বক্ররেখাটি ১ ডিগ্রির সরলরেখা, তাই তিনটি নিয়মেই হুবহু নিখুঁত উত্তর ৪০ পাওয়া গেল!
+            </p>
+          </div>
+        </article>
+
+        <!-- Topic 5.3 -->
+        <article class="topic-card">
+          <div class="topic-header">
+            <div class="topic-meta">
+              <div class="topic-number">৫.৩</div>
+              <div class="topic-title-text">
+                <h3>Class Practice Problem 2: Trigonometric Function</h3>
+                <span>ক্লাসে সমাধানকৃত প্র্যাকটিস অঙ্ক ২: $\int_0^1 \sqrt{\sin x + \cos x}\, dx$ ($n=6$)</span>
+              </div>
+            </div>
+            <div class="topic-actions">
+              <label class="btn btn-secondary btn-sm" style="cursor:pointer;">
+                <input type="checkbox" class="topic-check-input" data-topic-id="t5_3" style="margin-right:6px;"> সম্পন্ন হয়েছে (Done)
+              </label>
+            </div>
+          </div>
+
+          <div class="solved-problem-box">
+            <span class="problem-badge">Class Note Page 75-77 (Solved)</span>
+            <div class="problem-statement">
+              <strong>Problem:</strong> Evaluate $\int_0^1 \sqrt{\sin x + \cos x}\, dx$, taking 6 subintervals, using (i) Trapezoidal Rule, (ii) Simpson's 1/3 Rule, (iii) Simpson's 3/8 Rule.
+            </div>
+
+            <p>
+              $a = 0, \; b = 1, \; n = 6 \implies h = \frac{1 - 0}{6} = \frac{1}{6}$।<br>
+              <strong>সতর্কতা:</strong> ক্যালকুলেটরকে অবশ্যই <strong>Radian (Rad)</strong> মোডে রাখতে হবে!
+            </p>
+
+            <div class="table-responsive">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>k</th>
+                    <th>$x_k$</th>
+                    <th>$y_k = \sqrt{\sin x_k + \cos x_k}$</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>0</td><td>0.0000</td><td>1.000000</td></tr>
+                  <tr><td>1</td><td>1/6 = 0.1667</td><td>1.073331</td></tr>
+                  <tr><td>2</td><td>2/6 = 0.3333</td><td>1.127827</td></tr>
+                  <tr><td>3</td><td>3/6 = 0.5000</td><td>1.164907</td></tr>
+                  <tr><td>4</td><td>4/6 = 0.6667</td><td>1.185011</td></tr>
+                  <tr><td>5</td><td>5/6 = 0.8333</td><td>1.187317</td></tr>
+                  <tr><td>6</td><td>1.0000</td><td>1.175489</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="math-display-wrap">
+              $$\text{Trapezoidal Rule: } I = \frac{1/6}{2} [ (y_0 + y_6) + 2(y_1 + y_2 + y_3 + y_4 + y_5) ] = \mathbf{1.1415}$$
+              $$\text{Simpson's 1/3 Rule: } I = \frac{1/6}{3} [ (y_0 + y_6) + 4(y_1 + y_3 + y_5) + 2(y_2 + y_4) ] = \mathbf{1.1419}$$
+              $$\text{Simpson's 3/8 Rule: } I = \frac{3(1/6)}{8} [ (y_0 + y_6) + 3(y_1 + y_2 + y_4 + y_5) + 2(y_3) ] = \mathbf{1.1419}$$
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         MODULE 6: INTERACTIVE SOLVERS (IN-BROWSER LAB)
+         ====================================================================== -->
+    <div class="module-content-pane" id="mod-solvers">
+      <div class="module-banner">
+        <div class="banner-left">
+          <span class="banner-pill"><i class="fas fa-terminal"></i> লাইভ সলভার ল্যাব</span>
+          <h2 class="banner-title">Interactive Numerical Solvers</h2>
+          <p class="banner-desc">
+            পরীক্ষার যেকোনো অঙ্ক এখানে সরাসরি টেস্ট করে দেখতে পারবেন! এটি স্টেপ-বাই-স্টেপ সমাধান ও ফলাফল প্রদর্শন করে।
+          </p>
+        </div>
+      </div>
+
+      <!-- Solver 1: Bisection -->
+      <div class="interactive-tool-pane">
+        <div class="tool-header">
+          <div class="tool-title"><i class="fas fa-play-circle" style="color:var(--accent-cyan);"></i> ১. Bisection Method লাইভ সলভার</div>
+          <span class="badge badge-syllabus">Step-by-Step Table</span>
+        </div>
+        <div class="tool-inputs-grid">
+          <div class="input-group">
+            <label class="input-label">ফাংশন f(x)</label>
+            <input type="text" class="custom-input" id="bis-func" value="x^3 - 2*x^2 - 4">
+          </div>
+          <div class="input-group">
+            <label class="input-label">শুরুর বিন্দু (a)</label>
+            <input type="number" class="custom-input" id="bis-a" value="2" step="any">
+          </div>
+          <div class="input-group">
+            <label class="input-label">শেষের বিন্দু (b)</label>
+            <input type="number" class="custom-input" id="bis-b" value="3" step="any">
+          </div>
+          <div class="input-group">
+            <label class="input-label">সর্বোচ্চ ধাপ সংখ্যা</label>
+            <input type="number" class="custom-input" id="bis-iter" value="7">
+          </div>
+        </div>
+        <button class="btn btn-primary" id="btn-run-bisection"><i class="fas fa-bolt"></i> ধাপসমূহ গণনা করুন</button>
+        <div class="tool-output-area" id="bis-output">ফলাফল দেখার জন্য উপরের বাটনে ক্লিক করুন...</div>
+      </div>
+
+      <!-- Solver 2: Newton Raphson -->
+      <div class="interactive-tool-pane">
+        <div class="tool-header">
+          <div class="tool-title"><i class="fas fa-play-circle" style="color:var(--accent-emerald);"></i> ২. Newton-Raphson Method লাইভ সলভার</div>
+          <span class="badge badge-syllabus">Quadratic Rate</span>
+        </div>
+        <div class="tool-inputs-grid">
+          <div class="input-group">
+            <label class="input-label">ফাংশন f(x)</label>
+            <input type="text" class="custom-input" id="newt-func" value="x^3 - 2*x^2 - 4">
+          </div>
+          <div class="input-group">
+            <label class="input-label">অন্তরক f'(x)</label>
+            <input type="text" class="custom-input" id="newt-dfunc" value="3*x^2 - 4*x">
+          </div>
+          <div class="input-group">
+            <label class="input-label">প্রাথমিক অনুমান (x₀)</label>
+            <input type="number" class="custom-input" id="newt-x0" value="2.6" step="any">
+          </div>
+          <div class="input-group">
+            <label class="input-label">ধাপ সংখ্যা</label>
+            <input type="number" class="custom-input" id="newt-iter" value="5">
+          </div>
+        </div>
+        <button class="btn btn-success" id="btn-run-newton"><i class="fas fa-bolt"></i> রুট বের করুন</button>
+        <div class="tool-output-area" id="newt-output">ফলাফল দেখার জন্য উপরের বাটনে ক্লিক করুন...</div>
+      </div>
+
+      <!-- Solver 3: Gauss & Gauss-Jordan 3x3 -->
+      <div class="interactive-tool-pane">
+        <div class="tool-header">
+          <div class="tool-title"><i class="fas fa-table" style="color:var(--accent-purple);"></i> ৩. 3x3 Gauss ও Gauss-Jordan ম্যাট্রিক্স সলভার</div>
+          <span class="badge badge-syllabus">Row Operations</span>
+        </div>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;">
+          ক্লাসের সমীকরণ: $2x_1 + x_2 + 4x_3 = 12$, $8x_1 - 3x_2 + 2x_3 = 20$, $4x_1 + 11x_2 - x_3 = 33$ প্রিলোড করা আছে:
+        </p>
+        <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:8px; max-width:450px; margin-bottom:15px;">
+          <input type="number" class="custom-input" id="m00" value="2">
+          <input type="number" class="custom-input" id="m01" value="1">
+          <input type="number" class="custom-input" id="m02" value="4">
+          <input type="number" class="custom-input" id="m03" value="12" style="border-color:#fbbf24;">
+
+          <input type="number" class="custom-input" id="m10" value="8">
+          <input type="number" class="custom-input" id="m11" value="-3">
+          <input type="number" class="custom-input" id="m12" value="2">
+          <input type="number" class="custom-input" id="m13" value="20" style="border-color:#fbbf24;">
+
+          <input type="number" class="custom-input" id="m20" value="4">
+          <input type="number" class="custom-input" id="m21" value="11">
+          <input type="number" class="custom-input" id="m22" value="-1">
+          <input type="number" class="custom-input" id="m23" value="33" style="border-color:#fbbf24;">
+        </div>
+        <div style="display:flex; gap:10px;">
+          <button class="btn btn-primary" id="btn-run-gauss"><i class="fas fa-play"></i> Gauss Elimination সলভ</button>
+          <button class="btn btn-secondary" id="btn-run-jordan"><i class="fas fa-play"></i> Gauss-Jordan সলভ</button>
+        </div>
+        <div class="tool-output-area" id="matrix-output">ম্যাট্রিক্স অপারেশনের ধাপসমূহ দেখতে বাটনে চাপুন...</div>
+      </div>
+
+      <!-- Solver 4: Numerical Integration -->
+      <div class="interactive-tool-pane">
+        <div class="tool-header">
+          <div class="tool-title"><i class="fas fa-calculator" style="color:var(--accent-amber);"></i> ৪. নিউমেরিক্যাল ইন্টিগ্রেশন সলভার (Trapezoidal, Simpson 1/3 ও 3/8)</div>
+          <span class="badge badge-syllabus">3 Taught Rules Side-by-Side</span>
+        </div>
+        <div class="tool-inputs-grid">
+          <div class="input-group">
+            <label class="input-label">ফাংশন f(x)</label>
+            <input type="text" class="custom-input" id="integ-func" value="Math.sqrt(x*x + 2*x + 1)">
+          </div>
+          <div class="input-group">
+            <label class="input-label">নিম্ন সীমা (a)</label>
+            <input type="number" class="custom-input" id="integ-a" value="0">
+          </div>
+          <div class="input-group">
+            <label class="input-label">উচ্চ সীমা (b)</label>
+            <input type="number" class="custom-input" id="integ-b" value="8">
+          </div>
+          <div class="input-group">
+            <label class="input-label">উপব্যবধি সংখ্যা (n)</label>
+            <input type="number" class="custom-input" id="integ-n" value="6">
+          </div>
+        </div>
+        <button class="btn btn-amber" id="btn-run-integ"><i class="fas fa-calculator"></i> ইন্টিগ্রেশন নির্ণয় করুন</button>
+        <div class="tool-output-area" id="integ-output">মান ও টেবিল দেখতে বাটনে ক্লিক করুন...</div>
+      </div>
+
+      <!-- Solver 5: Finite Difference Table -->
+      <div class="interactive-tool-pane">
+        <div class="tool-header">
+          <div class="tool-title"><i class="fas fa-table" style="color:var(--accent-cyan);"></i> ৫. সসীম অন্তর টেবিল জেনারেটর (Finite Difference Table)</div>
+        </div>
+        <div class="input-group" style="margin-bottom:12px;">
+          <label class="input-label">y এর মানসমূহ (কমা দিয়ে লিখুন)</label>
+          <input type="text" class="custom-input" id="diff-yvals" value="98752, 132285, 168076, 195690, 246050">
+        </div>
+        <button class="btn btn-primary" id="btn-run-difftable"><i class="fas fa-table"></i> ডিফারেন্স টেবিল তৈরি করুন</button>
+        <div class="tool-output-area" id="diff-output">টেবিল দেখতে বাটনে ক্লিক করুন...</div>
+      </div>
+
+    </div>
+
+    <!-- ======================================================================
+         MODULE 7: CASIO CALCULATOR SHORTCUTS & HACKS
+         ====================================================================== -->
+    <div class="module-content-pane" id="mod-calc">
+      <div class="module-banner">
+        <div class="banner-left">
+          <span class="banner-pill"><i class="fas fa-microchip"></i> ক্যালকুলেটর মাস্টারগাইড</span>
+          <h2 class="banner-title">পরীক্ষার হলে Casio 991ES/EX ক্যালকুলেটর শর্টকাট হ্যাকস</h2>
+          <p class="banner-desc">
+            ক্যালকুলেটরের এই গোপন ফিচারগুলো জানা থাকলে পরীক্ষার প্রতিটি উত্তরের শুদ্ধতা ১০ সেকেন্ডে নিশ্চিত করতে পারবেন!
+          </p>
+        </div>
+      </div>
+
+      <div class="topics-stack">
+        <article class="topic-card">
+          <div class="topic-header">
+            <div class="topic-meta">
+              <div class="topic-title-text">
+                <h3>১. Newton-Raphson লুপ হ্যাক (Ans বাটন ট্রিক)</h3>
+                <span>প্রতি ধাপে হিসাব না করে শুধু = চেপে পরবর্তী ধাপ আনার পদ্ধতি</span>
+              </div>
+            </div>
+          </div>
+          <div class="calc-hack-card" style="margin:0;">
+            <p style="margin-bottom:10px; color:#f1f5f9;">
+              ধরুন সমীকরণ: $x^3 - 2x^2 - 4 = 0$, যার $f'(x) = 3x^2 - 4x$ এবং $x_0 = 2.6$:
+            </p>
+            <ol style="margin-left:1.5rem; line-height:1.8; color:#cbd5e1;">
+              <li>প্রথমে <span class="calc-key">2.6</span> লিখে <span class="calc-key">=</span> চাপুন।</li>
+              <li>এখন ডিসপ্লেতে টাইপ করুন: <span class="calc-key">Ans - (Ans³ - 2Ans² - 4) ÷ (3Ans² - 4Ans)</span>।</li>
+              <li>এবার <span class="calc-key">=</span> চাপুন $\implies x_1 = 2.59433$ চলে আসবে!</li>
+              <li>আবার <span class="calc-key">=</span> চাপুন $\implies x_2 = 2.59782$ চলে আসবে!</li>
+              <li>খাতায় শুধু এগুলো স্টেপ হিসেবে লিখে দিন, ক্যালকুলেশন ভুলের ০% সম্ভাবনা!</li>
+            </ol>
+          </div>
+        </article>
+
+        <article class="topic-card">
+          <div class="topic-header">
+            <div class="topic-meta">
+              <div class="topic-title-text">
+                <h3>২. 3x3 সমীকরণ সমাধান ও উত্তর ভেরিফিকেশন (Equation Mode)</h3>
+                <span>গাউস বা গাউস-জর্ডান করার আগেই মূল উত্তর জেনে নেওয়া</span>
+              </div>
+            </div>
+          </div>
+          <div class="calc-hack-card" style="margin:0; border-color:#6366f1;">
+            <ol style="margin-left:1.5rem; line-height:1.8; color:#cbd5e1;">
+              <li><strong>Casio fx-991ES Plus:</strong> চাপুন <span class="calc-key">MODE</span> $\rightarrow$ <span class="calc-key">5 (EQN)</span> $\rightarrow$ <span class="calc-key">2 (anX + bnY + cnZ = dn)</span>।</li>
+              <li><strong>Casio fx-991EX (ClassWiz):</strong> চাপুন <span class="calc-key">MENU</span> $\rightarrow$ <span class="calc-key">A (Equation/Func)</span> $\rightarrow$ <span class="calc-key">1 (Simul Equation)</span> $\rightarrow$ <span class="calc-key">3 (Unknowns)</span>।</li>
+              <li>ম্যাট্রিক্সের সহগগুলো ইনপুট দিন: <span class="calc-key">2</span> <span class="calc-key">=</span> <span class="calc-key">1</span> <span class="calc-key">=</span> <span class="calc-key">4</span> <span class="calc-key">=</span> <span class="calc-key">12</span> <span class="calc-key">=</span> ইত্যাদি।</li>
+              <li><span class="calc-key">=</span> চাপলেই দেখতে পাবেন: $X = 3, \; Y = 2, \; Z = 1$!</li>
+            </ol>
+          </div>
+        </article>
+
+        <article class="topic-card">
+          <div class="topic-header">
+            <div class="topic-meta">
+              <div class="topic-title-text">
+                <h3>৩. ইন্টিগ্রেশন টেবিল তৈরির টেবিল মোড হ্যাক (TABLE Mode)</h3>
+                <span>Trapezoidal ও Simpson এর ছক ১০ সেকেন্ডে তৈরি করার উপায়</span>
+              </div>
+            </div>
+          </div>
+          <div class="calc-hack-card" style="margin:0; border-color:#10b981;">
+            <ol style="margin-left:1.5rem; line-height:1.8; color:#cbd5e1;">
+              <li>চাপুন <span class="calc-key">MODE</span> $\rightarrow$ <span class="calc-key">7 (TABLE)</span> (ClassWiz এ MENU $\rightarrow$ 9)।</li>
+              <li>ফাংশন $f(X) = \sqrt{X^2 + 2X + 1}$ লিখুন (<span class="calc-key">ALPHA</span> + <span class="calc-key">)</span> দিয়ে $X$ আসে)।</li>
+              <li><strong>Start:</strong> <span class="calc-key">0</span> <span class="calc-key">=</span>, <strong>End:</strong> <span class="calc-key">8</span> <span class="calc-key">=</span>, <strong>Step:</strong> <span class="calc-key">4/3</span> (বা h এর মান) <span class="calc-key">=</span>।</li>
+              <li>ক্যালকুলেটর পুরো $x_i$ ও $y_i$ এর ছক একবারে সাজিয়ে দেবে! খাতায় শুধু তুলে নিন!</li>
+            </ol>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         MODULE 8: YOUTUBE VIDEO LECTURE HALL
+         ====================================================================== -->
+    <div class="module-content-pane" id="mod-videos">
+      <div class="module-banner">
+        <div class="banner-left">
+          <span class="banner-pill"><i class="fab fa-youtube"></i> ভিডিও লেকচার লাইব্রেরি</span>
+          <h2 class="banner-title">সেরা কিউরেটেড ভিডিও লেকচার (বাংলা ও ইংরেজি)</h2>
+          <p class="banner-desc">
+            পড়ানো টপিকগুলোর প্রতিটি পদ্ধতির জন্য সেরা ও সংক্ষিপ্ত লেকচারগুলো নিচে এমবেড করা আছে।
+          </p>
+        </div>
+      </div>
+
+      <div class="video-card-grid">
+        <!-- Video 1: Gauss Elimination -->
+        <div class="video-card">
+          <div class="video-thumbnail-wrap">
+            <iframe src="https://www.youtube-nocookie.com/embed/2j5fZhLP35Q" title="Gauss Elimination Method" allowfullscreen></iframe>
+          </div>
+          <div class="video-info">
+            <div class="video-title">গাউস অপনয়ন পদ্ধতি (Gauss Elimination) Step-by-Step</div>
+            <div class="video-meta">
+              <span>Neso Academy / Engineering Math</span>
+              <span>১০ মিনিট</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video 2: Newton Raphson -->
+        <div class="video-card">
+          <div class="video-thumbnail-wrap">
+            <iframe src="https://www.youtube-nocookie.com/embed/1uN8cBGVpfs" title="Newton Raphson Method" allowfullscreen></iframe>
+          </div>
+          <div class="video-info">
+            <div class="video-title">Newton Raphson Method Derivation & Problem Solving</div>
+            <div class="video-meta">
+              <span>Gajendra Purohit / Math</span>
+              <span>১২ মিনিট</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video 3: Bisection Method -->
+        <div class="video-card">
+          <div class="video-thumbnail-wrap">
+            <iframe src="https://www.youtube-nocookie.com/embed/HQvgEUPw_c8" title="Bisection Method" allowfullscreen></iframe>
+          </div>
+          <div class="video-info">
+            <div class="video-title">Bisection Method সহজে বোঝার কৌশল ও ম্যাথ সলভ</div>
+            <div class="video-meta">
+              <span>Bangla / English Engineering Tutorial</span>
+              <span>৯ মিনিট</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video 4: Newton's Forward & Backward Interpolation -->
+        <div class="video-card">
+          <div class="video-thumbnail-wrap">
+            <iframe src="https://www.youtube-nocookie.com/embed/X9o3z0sU5jQ" title="Newton's Forward Interpolation" allowfullscreen></iframe>
+          </div>
+          <div class="video-info">
+            <div class="video-title">Newton's Forward & Backward Interpolation Formula</div>
+            <div class="video-meta">
+              <span>Abdul Bari / Engineering Math</span>
+              <span>১৫ মিনিট</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video 5: Trapezoidal & Simpson's Rule -->
+        <div class="video-card">
+          <div class="video-thumbnail-wrap">
+            <iframe src="https://www.youtube-nocookie.com/embed/7Vp0XUoXGjg" title="Trapezoidal and Simpson Rules" allowfullscreen></iframe>
+          </div>
+          <div class="video-info">
+            <div class="video-title">Trapezoidal, Simpson 1/3 and 3/8 Rules Compared</div>
+            <div class="video-meta">
+              <span>Numerical Integration Masterclass</span>
+              <span>১৪ মিনিট</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video 6: Lagrange Interpolation -->
+        <div class="video-card">
+          <div class="video-thumbnail-wrap">
+            <iframe src="https://www.youtube-nocookie.com/embed/qg_w8qB24hQ" title="Lagrange Interpolation" allowfullscreen></iframe>
+          </div>
+          <div class="video-info">
+            <div class="video-title">Lagrange Interpolation Formula Derivation & Math</div>
+            <div class="video-meta">
+              <span>Unequal Interval Interpolation</span>
+              <span>১১ মিনিট</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         MODULE 9: FORMULA CHEAT SHEET (PRINTABLE / QUICK REVISION)
+         ====================================================================== -->
+    <div class="module-content-pane" id="mod-cheat">
+      <div class="module-banner">
+        <div class="banner-left">
+          <span class="banner-pill"><i class="fas fa-file-invoice"></i> শেষ মুহূর্তের ফর্মুলা শিট</span>
+          <h2 class="banner-title">পরীক্ষার হলে প্রবেশের ২০ মিনিট আগের কুইক ফর্মুলা রিভিশন</h2>
+          <p class="banner-desc">
+            কেবলমাত্র ক্লাসে পড়ানো বিষয়গুলোর চূড়ান্ত সারসংক্ষেপ — কোনো অযাচিত বিষয় নেই।
+          </p>
+        </div>
+      </div>
+
+      <div class="cheat-sheet-grid" id="cheat-sheet">
+        <!-- Card 1 -->
+        <div class="cheat-card">
+          <div class="cheat-card-header">
+            <div class="cheat-card-title">১. মূল নির্ণয় (Root Finding)</div>
+            <span class="cheat-badge">Module 2</span>
+          </div>
+          <ul class="cheat-list">
+            <li class="cheat-item">
+              <strong>Bisection Method:</strong> $x_r = \frac{a + b}{2}$ (শর্ত: $f(a) \cdot f(b) < 0$)
+            </li>
+            <li class="cheat-item">
+              <strong>Regula-Falsi (False Position):</strong> $x_r = \frac{a f(b) - b f(a)}{f(b) - f(a)}$
+            </li>
+            <li class="cheat-item">
+              <strong>Newton-Raphson:</strong> $x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}$ (Quadratic Convergence $p=2$, ব্যর্থ যদি $f'=0$)
+            </li>
+          </ul>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="cheat-card">
+          <div class="cheat-card-header">
+            <div class="cheat-card-title">২. সসীম অন্তর ও সমব্যবধির ইন্টারপোলেশন</div>
+            <span class="cheat-badge">Module 3</span>
+          </div>
+          <ul class="cheat-list">
+            <li class="cheat-item">
+              <strong>অপারেটর সম্পর্ক:</strong> $\Delta = E - 1, \; \nabla = 1 - E^{-1}, \; E = e^{hD}$
+            </li>
+            <li class="cheat-item">
+              <strong>Newton Forward ($u = \frac{x-x_0}{h}$):</strong><br>
+              $y(x) = y_0 + u \Delta y_0 + \frac{u(u-1)}{2!} \Delta^2 y_0 + \frac{u(u-1)(u-2)}{3!} \Delta^3 y_0 + ...$
+            </li>
+            <li class="cheat-item">
+              <strong>Newton Backward ($u = \frac{x-x_n}{h}$):</strong><br>
+              $y(x) = y_n + u \nabla y_n + \frac{u(u+1)}{2!} \nabla^2 y_n + \frac{u(u+1)(u+2)}{3!} \nabla^3 y_n + ...$
+            </li>
+          </ul>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="cheat-card">
+          <div class="cheat-card-header">
+            <div class="cheat-card-title">৩. অসমান ব্যবধির ইন্টারপোলেশন</div>
+            <span class="cheat-badge">Module 4</span>
+          </div>
+          <ul class="cheat-list">
+            <li class="cheat-item">
+              <strong>Divided Difference:</strong> $f[x_0, x_1] = \frac{f(x_1) - f(x_0)}{x_1 - x_0}$
+            </li>
+            <li class="cheat-item">
+              <strong>Newton General Divided Diff:</strong><br>
+              $f(x) = f(x_0) + (x-x_0)f[x_0, x_1] + (x-x_0)(x-x_1)f[x_0, x_1, x_2] + ...$
+            </li>
+            <li class="cheat-item">
+              <strong>Lagrange's Formula:</strong><br>
+              $P(x) = \sum_{i=0}^n y_i \prod_{j \neq i} \frac{x - x_j}{x_i - x_j}$
+            </li>
+          </ul>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="cheat-card">
+          <div class="cheat-card-header">
+            <div class="cheat-card-title">৪. নিউমেরিক্যাল ইন্টিগ্রেশন (পড়ানো ৩টি সূত্র)</div>
+            <span class="cheat-badge">Module 5</span>
+          </div>
+          <ul class="cheat-list">
+            <li class="cheat-item">
+              <strong>Trapezoidal ($n \ge 1$):</strong> $I = \frac{h}{2} [(y_0 + y_n) + 2 \sum y_{\text{rest}}]$
+            </li>
+            <li class="cheat-item">
+              <strong>Simpson's 1/3 ($n$ জোড়):</strong> $I = \frac{h}{3} [(y_0 + y_n) + 4 \sum y_{\text{odd}} + 2 \sum y_{\text{even}}]$
+            </li>
+            <li class="cheat-item">
+              <strong>Simpson's 3/8 ($n$ ৩ এর গুণিতক):</strong> $I = \frac{3h}{8} [(y_0 + y_n) + 3 \sum y_{\text{non-mult-3}} + 2 \sum y_{\text{mult-3}}]$
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         MODULE 10: INTERACTIVE EXAM QUIZ
+         ====================================================================== -->
+    <div class="module-content-pane" id="mod-quiz">
+      <div class="module-banner">
+        <div class="banner-left">
+          <span class="banner-pill"><i class="fas fa-check-double"></i> সেলফ টেস্ট</span>
+          <h2 class="banner-title">১০টি ট্রিকি প্রশ্নের মক টেস্ট (পড়ানো বিষয়ের উপর)</h2>
+          <p class="banner-desc">
+            ক্লিক করে উত্তর দিন এবং সাথে সাথেই সঠিক উত্তর ও বিস্তারিত ব্যাখ্যা বাংলায় দেখে নিন।
+          </p>
+        </div>
+        <div class="banner-right">
+          <div class="badge badge-exam" id="quiz-score-badge">স্কোর: ০ / ০</div>
+        </div>
+      </div>
+
+      <div id="quiz-container">
+        <!-- Populated dynamically by app.js -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="brand-text" style="text-align:center;">
+        <h2 style="font-size:1.3rem; color:#fff;">MATH 2211: Numerical Methods & Analysis</h2>
+        <p style="color:var(--text-muted); font-size:0.9rem; margin-top:4px;">
+          Tailored for CSE 2nd Year 2nd Semester Final Exam • Prepared according to Sir's Taught Lectures
+        </p>
+      </div>
+      <p class="footer-text">
+        শুভকামনা রইল আপনার কালকের সেমিস্টার ফাইনাল পরীক্ষার জন্য! সর্বোচ্চ প্রস্তুতি নিয়ে আত্মবিশ্বাসের সাথে পরীক্ষা দিন। 🚀
+      </p>
+    </div>
+  </footer>
+
+  <!-- Floating Action Button to Jump to Top / Timer -->
+  <button class="fab-top" id="fab-top" title="উপরে যান" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Custom App JS -->
+  <script src="app.js"></script>
+</body>
+</html>
