@@ -5,6 +5,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initMobileNav();
   initTimer();
   initProgressTracker();
   initTabs();
@@ -12,6 +13,32 @@ document.addEventListener('DOMContentLoaded', () => {
   initQuiz();
   renderMathFormulas();
 });
+
+function initMobileNav() {
+  const toggleBtn = document.getElementById('nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  if (toggleBtn && navLinks) {
+    toggleBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      const icon = toggleBtn.querySelector('i');
+      if (icon) {
+        if (navLinks.classList.contains('open')) {
+          icon.className = 'fas fa-times';
+        } else {
+          icon.className = 'fas fa-bars';
+        }
+      }
+    });
+
+    navLinks.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        const icon = toggleBtn.querySelector('i');
+        if (icon) icon.className = 'fas fa-bars';
+      });
+    });
+  }
+}
 
 /* ==========================================================================
    1. 5-HOUR COUNTDOWN / STUDY TIMER
